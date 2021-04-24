@@ -6,39 +6,83 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var person = require('./Person.js')
-var user = require('./User.js');
-var daily = require('./Daily.js');
-var goal = require('./Goal.js');
+var User = require('./User.js');
+var Daily = require('./Daily.js');
+var Goal = require('./Goal.js');
 
 /***************************************/
 
 // endpoint for creating a new person
-// this is the action of the "create new person" form
-app.use('/create', (req, res) => {
-	// construct the Person from the form data which is in the request body
-	var newPerson = new Person ({
+// this is the action of new user form
+app.use('/createUser', (req, res) => {
+	// construct the User from the form data which is in the request body
+	var newUser = new User ({
 		name: req.body.name,
-		age: req.body.age,
-	    });
+		email: req.body.email,
+		password: req.body.password,
+		happyList: req.body.happyList
+	});
 
-	// save the person to the database
-	newPerson.save( (err) => { 
+	// save the User to the database 
+	newUser.save( (err) => { 
 		if (err) {
 		    res.type('html').status(200);
-		    res.write('uh oh: ' + err);
+		    res.write('Failure to add the User to the database: ' + err);
 		    console.log(err);
 		    res.end();
 		}
 		else {
 		    // display the "successfull created" message
-		    res.send('successfully added ' + newPerson.name + ' to the database');
+		    res.send('Success');
 		}
 	    } ); 
-    }
-    );
+	}
+);
 
-// endpoint for showing all the people
+app.use('/createDaily', (req, res) => {
+	var newDaily = new Daily ({
+		userID: req.body.userID,
+		date: req.body.date,
+		trackers: req.body.trackers,
+		journalEntry: req.body.journalEntry
+	});
+
+	newDaily.save((err) => {
+		if (err) {
+			res.type('html').status(200);
+		    res.write('Failure to add the Daily to the database: ' + err);
+		    console.log(err);
+		    res.end();
+		}
+		else {
+			res.send('Success');
+		}
+	})
+})
+
+app.use('/createGoal', (req, res) => {
+	var newGoal = new Goal ({
+		userID: req.body.userID,
+		type: req.body.type,
+		description: req.body.description,
+		journalEntry: req.body.journalEntry
+	});
+
+	newDaily.save((err) => {
+		if (err) {
+			res.type('html').status(200);
+		    res.write('Failure to add the Goal to the database: ' + err);
+		    console.log(err);
+		    res.end();
+		}
+		else {
+			res.send('Success');
+		}
+	})
+})
+
+
+/*// endpoint for showing all the people
 app.use('/all', (req, res) => {
     
 	// find all the Person objects in the database
@@ -68,7 +112,7 @@ app.use('/all', (req, res) => {
 		    }
 		}
 	    }).sort({ 'age': 'asc' }); // this sorts them BEFORE rendering the results
-    });
+    });*/
 
 // endpoint for accessing data via the web api
 // to use this, make a request for /api to get an array of all Person objects
@@ -117,7 +161,7 @@ app.use('/api', (req, res) => {
 
 app.use('/public', express.static('public'));
 
-app.use('/', (req, res) => { res.redirect('/public/personform.html'); } );
+app.use('/', (req, res) => { res.redirect('/public/index.html'); } );
 
 app.listen(3000,  () => {
 	console.log('Listening on port 3000');
