@@ -6,8 +6,10 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// import the Person class from Person.js
-var Person = require('./Person.js');
+var person = require('./Person.js')
+var user = require('./User.js');
+var daily = require('./Daily.js');
+var goal = require('./Goal.js');
 
 /***************************************/
 
@@ -40,7 +42,7 @@ app.use('/create', (req, res) => {
 app.use('/all', (req, res) => {
     
 	// find all the Person objects in the database
-	Person.find( {}, (err, persons) => {
+	schemas.find( {}, (err, persons) => {
 		if (err) {
 		    res.type('html').status(200);
 		    console.log('uh oh' + err);
