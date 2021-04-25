@@ -163,6 +163,7 @@ app.use('/getGoals', (req, res) => {
 	})
 })
 
+//TODO: finish this endpoint
 app.use('/updateHappy', (req, res) => {
 	let queryObj = {};
 	let action = null;//add, update, delete, or delete all
@@ -184,8 +185,13 @@ app.use('/updateHappy', (req, res) => {
 		}
 	})
 
+})
 
-}
+app.use('/updateGoals', (req, res) => {
+	let queryObj = {};
+	let action = null;//add, update, delete, or delete all
+
+})
 
 
 /*// endpoint for showing all the people
