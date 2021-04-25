@@ -81,6 +81,112 @@ app.use('/createGoal', (req, res) => {
 	})
 })
 
+app.use('/getUser', (req, res) => {
+	// construct the query object
+	let queryObj = {};
+	if (req.body.email) {
+		queryObj = { "email" : req.body.email };
+	}
+	User.findOne(queryObj, (err, users) => {
+		if (err) {
+			console.log('Failure to retrieve the User from the database: ' + err);
+		    res.json({});
+		}
+		else if (users.length == 0){
+			console.log('No match found in Users');
+			res.json({});
+		}
+		else {
+			res.json(users);
+		}
+	})
+})
+
+app.use('/getDailies', (req, res) => {
+	// construct the query object
+	let queryObj = {};
+
+	if (req.body.userID) {
+		queryObj = { "userID" : req.body.userID};
+	}
+	if (req.body.date){
+		queryObj = { "date" : req.body.date};
+	}
+
+	Daily.find(queryObj, (err, dailies) => {
+		if (err) {
+			console.log('Failure to retrieve the Daily/ies from the database: ' + err);
+		    res.json({});
+		}
+		else if (dailies.length == 0){
+			console.log('No match found in Dailies');
+			res.json({});
+		}
+		else {
+			// construct an array out of the result
+		    let returnArray = [];
+		    dailies.forEach( (daily) => {
+			    returnArray.push(daily);
+			});
+		    // send it back as JSON Array
+		    res.json(returnArray); 
+		}
+	})
+})
+
+app.use('/getGoals', (req, res) => {
+	// construct the query object
+	let queryObj = {};
+
+	if (req.body.userID) {
+		queryObj = { "userID" : req.body.userID};
+	}
+
+	Goal.find(queryObj, (err, goals) => {
+		if (err) {
+			console.log('Failure to retrieve the Goal(s) from the database: ' + err);
+		    res.json({});
+		}
+		else if (goals.length == 0){
+			console.log('No match found in Goals');
+			res.json({});
+		}
+		else {
+			// construct an array out of the result
+		    let returnArray = [];
+		    goals.forEach( (goal) => {
+			    returnArray.push(goal);
+			});
+		    // send it back as JSON Array
+		    res.json(returnArray); 
+		}
+	})
+})
+
+app.use('/updateHappy', (req, res) => {
+	let queryObj = {};
+	let action = null;//add, update, delete, or delete all
+	let title = null;
+	let happyList = null;
+
+	if (req.body.userID && req.body.action) {
+		queryObj = { "userID" : req.body.userID};
+		action = req.body.action;
+	}
+	if (req.body.action !== "delete all"){
+		title = req.body.title;
+	}
+
+	happyList = User.find(queryObj, (err, users) => {
+		if (err) {
+			console.log('Failure to retrieve the User from the database: ' + err);
+		    res.json({});
+		}
+	})
+
+
+}
+
 
 /*// endpoint for showing all the people
 app.use('/all', (req, res) => {
