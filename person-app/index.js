@@ -3,18 +3,22 @@ var express = require('express');
 var app = express();
 
 // set up BodyParser
+/*var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));*/
+// set up BodyParser
 var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 var User = require('./User.js');
 var Daily = require('./Daily.js');
 var Goal = require('./Goal.js');
+var Journal = require('./Journal.js');
 
 /***************************************/
 
 // endpoint for creating a new person
 // this is the action of new user form
-app.use('/createUser', (req, res) => {
+app.post('/createUser', (req, res) => {
 	// construct the User from the form data which is in the request body
 	var newUser = new User ({
 		name: req.body.name,
@@ -39,13 +43,16 @@ app.use('/createUser', (req, res) => {
 	}
 );
 
-app.use('/createDaily', (req, res) => {
+app.post('/createDaily', (req, res) => {
 	var newDaily = new Daily ({
 		userID: req.body.userID,
 		date: req.body.date,
 		trackers: req.body.trackers,
-		journalEntry: req.body.journalEntry
 	});
+
+	console.log(req.body.userID);
+	console.log(req.body.date);
+	console.log(req.body.trackers);
 
 	newDaily.save((err) => {
 		if (err) {
@@ -56,11 +63,32 @@ app.use('/createDaily', (req, res) => {
 		}
 		else {
 			res.send('Success');
+			console.log('Success')
 		}
 	})
 })
 
-app.use('/createGoal', (req, res) => {
+app.post('/createJournal', (req, res) => {
+	var newDaily = new Journal ({
+		userID: req.body.userID,
+		date: req.body.date,
+		journalEntry: req.body.journalEntry
+	});
+
+	newDaily.save((err) => {
+		if (err) {
+			res.type('html').status(200);
+		    res.write('Failure to add the Journal to the database: ' + err);
+		    console.log(err);
+		    res.end();
+		}
+		else {
+			res.send('Success');
+		}
+	})
+})
+
+app.post('/createGoal', (req, res) => {
 	var newGoal = new Goal ({
 		userID: req.body.userID,
 		type: req.body.type,
@@ -68,7 +96,7 @@ app.use('/createGoal', (req, res) => {
 		journalEntry: req.body.journalEntry
 	});
 
-	newDaily.save((err) => {
+	newGoal.save((err) => {
 		if (err) {
 			res.type('html').status(200);
 		    res.write('Failure to add the Goal to the database: ' + err);
@@ -184,12 +212,6 @@ app.use('/updateHappy', (req, res) => {
 		    res.json({});
 		}
 	})
-
-})
-
-app.use('/updateGoals', (req, res) => {
-	let queryObj = {};
-	let action = null;//add, update, delete, or delete all
 
 })
 
