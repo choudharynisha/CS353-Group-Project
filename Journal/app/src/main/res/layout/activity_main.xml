@@ -9,22 +9,65 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="#FFFFFF"
+        android:backgroundTint="#D3A9A9"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="20dp">
 
         <TextView
-            android:id="@+id/statusField"
+            android:id="@+id/titleField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:freezesText="false"
             android:gravity="center"
-            android:text="[Click the button to connect to http://10.0.2.2:3000/test]" />
+            android:text="Menu"
+            android:textAllCaps="false"
+            android:textColor="#9C0309"
+            android:textSize="50dp"
+            android:onClick="onClickLaunchGoalSet"
+            tools:ignore="HardcodedText"/>
 
-        <Button
+        <Button android:id="@+id/launchMHTracker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Click Me!"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
-            android:onClick="onConnectButtonClick"/>
+            android:text="Mental Health\nTracker"
+            android:textSize="23dp"
+            app:backgroundTint="#4B59AE"
+            android:onClick="onClickLaunchMHT"
+            tools:ignore="HardcodedText"/>
+
+        <Button android:id="@+id/launchJournal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:onClick="onClickLaunchAddJournal"
+            android:text="Add Journal\nEntry"
+            android:textSize="23dp"
+            app:backgroundTint="#93984E"
+            tools:ignore="HardcodedText"/>
+
+        <Button android:id="@+id/launchGoals"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:onClick="onClickLaunchGoalSet"
+            android:text="Set Specific Goals"
+            android:textSize="23dp"
+            app:backgroundTint="#B6839B"
+            tools:ignore="HardcodedText"/>
 
     </LinearLayout>
 
