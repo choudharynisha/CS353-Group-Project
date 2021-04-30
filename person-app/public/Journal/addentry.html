@@ -7,13 +7,12 @@
     <body>
         <h1>Add an Entry</h1>
         <button onclick = "window.history.back();">Back</button> 
-        <button onclick = "window.open('/public/Journal/viewjournal.html', '_self');">View Journal</button><br /><br />
+        <button onclick = "window.open('/public/Journal/journal.html', '_self');">View Journal</button><br /><br />
         
-        <form method = "POST" id = "entryForm" action = "/createJournalEntry" onsubmit = "addEntry(); return false;">
+        <form id = "entryForm">
             <textarea name = "entry" cols = "200" rows = "40" id = "entry" placeholder = "Today's entry..." required></textarea><br /><br />
             
-            <!-- The button currently redirects to the homepage -->
-            <button type = "submit" name = "button" formmethod = "POST">Submit</button>
         </form>
+            <button type = "submit" name = "button" id = "submit">Submit</button>
     </body>
 </html>
