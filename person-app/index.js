@@ -92,8 +92,7 @@ app.post('/createGoal', (req, res) => {
 	var newGoal = new Goal ({
 		userID: req.body.userID,
 		type: req.body.type,
-		description: req.body.description,
-		journalEntry: req.body.journalEntry
+		description: req.body.description
 	});
 
 	newGoal.save((err) => {
