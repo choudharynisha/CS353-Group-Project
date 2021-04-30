@@ -29,6 +29,7 @@
             android:layout_height="501dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTxtJournalEntry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Put your thoughts down" />
@@ -50,14 +51,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Clear" />
+            android:text="Clear"
+            android:onClick="onClickClear"/>
 
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Submit" />
+            android:text="Submit"
+            android:onClick="onClickSubmit"/>
     </LinearLayout>
 
     <Button

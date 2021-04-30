@@ -12,8 +12,10 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String email = "cat@fakemail.com";
-    private final String userID = "608472f6074c2832e4e1dc9b";
+//    private final String userID = "608472f6074c2832e4e1dc9b";
+//    private final String email = "cat@fakemail.com";
+    private final String email = "dog@fakemail.com";
+    private final String userID = "608c19f532c5da92d1d6e0f9";
     private static final int COUNTER_ACTIVITY_ID = 1;
 
     @Override
