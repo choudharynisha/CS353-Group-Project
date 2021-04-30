@@ -15,6 +15,52 @@ var Daily = require('./Daily.js');
 var Goal = require('./Goal.js');
 var Journal = require('./Journal.js');
 
+const path = require('path');
+
+//////////////////
+// navigate to health tracker
+app.use(express.static(path.join (__dirname,'/public/')));
+// app.use('/', (req, res) => { res.sendFile(path.join(__dirname, '/public/index.html')) } );
+
+app.use(express.static(path.join(__dirname,'/tr')));
+
+app.post('/tracker', (req, res) => {
+    res.sendFile(path.join(__dirname, '/tr/tracker.html'));
+});
+
+app.post('/DailyGoals', (req, res) => {
+    res.sendFile(path.join(__dirname, '/tr/goalCreator.html'));
+});
+// app.use('/DailyGoals', (req, res) => { res.redirect('/public/goalCreator.html'); } );
+
+app.use('/createTrackerData', (req, res) => {
+    let temp = JSON.parse(req.body.trackers); 
+    console.log(temp); 
+    
+    var newDaily = new Daily ({
+        userID: req.body.userID,
+        date: req.body.date,
+        trackers: temp, 
+        // req.body.trackers,
+    });
+    
+    console.log(req.body.userID);
+    console.log(req.body.date);
+    console.log(req.body.trackers);
+    
+    newDaily.save((err) => {
+        if(err) {
+                res.type('html').status(200);
+                res.write('Failure to add the Daily to the database: ' + err);
+                console.log(err);
+                res.end();
+        } else {
+                res.send('Success');
+                console.log('Success')
+        }
+    })
+});
+
 /***************************************/
 
 // endpoint for creating a new person
@@ -65,6 +111,10 @@ app.post('/createDaily', (req, res) => {
             console.log('Success')
         }
     })
+})
+
+app.post('/createJournalEntry', (req, res) => {
+    console.log(req);
 })
 
 app.post('/createJournal', (req, res) => {
@@ -210,7 +260,6 @@ app.use('/updateHappy', (req, res) => {
 
 /*// endpoint for showing all the people
 app.use('/all', (req, res) => {
-    
     // find all the Person objects in the database
     schemas.find( {}, (err, persons) => {
         if(err) {
@@ -286,4 +335,4 @@ app.use('/', (req, res) => { res.redirect('/public/index.html'); } );
 
 app.listen(3000,  () => {
     console.log('Listening on port 3000');
-    });
+});
