@@ -25,7 +25,7 @@ let typeOfG = null;
         document.getElementById("weeklyb").style.outlineColor = "rgb(115, 114, 221)";
         document.getElementById("Monthlyb").style.outlineColor = "rgb(179, 21, 131)";
         document.getElementById("yearlyb").style.outlineColor = "black";
-        typeOfG = "monthly"
+        typeOfG = "yearly"
     });
     finished.addEventListener('click', ()=>{
 
