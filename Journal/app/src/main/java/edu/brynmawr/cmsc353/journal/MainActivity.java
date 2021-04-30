@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickLaunchAddJournal(View view) {
-
+        Intent i = new Intent(this, JournalEntryActivity.class);
+        i.putExtra("userID", this.userID);
+        startActivity(i);
     }
 }
