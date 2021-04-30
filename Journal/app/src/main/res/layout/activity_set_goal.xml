@@ -40,16 +40,17 @@
             app:backgroundTint="#5A3C6A" />
 
         <EditText
-            android:inputType="textMultiLine"
-            android:lines="1"
-            android:background="#EDDAE3"
-            android:layout_height="wrap_content"
+            android:id="@+id/editTxtGoalTitle"
             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
-            android:textSize="30sp"
+            android:background="#EDDAE3"
+            android:inputType="textMultiLine"
+            android:lines="1"
+            android:scrollbars="horizontal"
             android:textColor="#7294a3"
-            android:scrollbars="horizontal"/>
+            android:textSize="30sp" />
 
         <Button
             android:layout_width="match_parent"
@@ -63,19 +64,20 @@
             app:backgroundTint="#5A3C6A" />
 
         <EditText
-            android:inputType="textMultiLine"
-            android:lines="5"
-            android:background="#EDDAE3"
-            android:layout_height="wrap_content"
+            android:id="@+id/editTxtGoalDescription"
             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
-            android:textSize="20sp"
-            android:textColor="#7294a3"
+            android:background="#EDDAE3"
             android:gravity="top"
-            android:paddingBottom="5dp"
+            android:inputType="textMultiLine"
+            android:lines="5"
             android:paddingHorizontal="5dp"
-            android:scrollbars="vertical"/>
+            android:paddingBottom="5dp"
+            android:scrollbars="vertical"
+            android:textColor="#7294a3"
+            android:textSize="20sp" />
 
         <Button
             android:layout_width="match_parent"
@@ -150,7 +152,7 @@
                 tools:ignore="ButtonStyle,HardcodedText"
                 android:text="submit"
                 android:textColor="#FFFF"
-                android:onClick="onclickSubmit"
+                android:onClick="onClickSubmit"
                 />
 
             <Button
@@ -159,7 +161,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="1"
-                android:onClick="onclickClearAll"
+                android:onClick="onClickClearAll"
                 android:text="clear"
                 android:textColor="#FFFF"
                 app:backgroundTint="#B6839B"
@@ -171,7 +173,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="1"
-                android:onClick="onclickReturnMain"
+                android:onClick="onClickReturnMain"
                 android:text="return"
                 android:textColor="#FFFF"
                 app:backgroundTint="#93984E"
