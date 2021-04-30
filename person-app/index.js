@@ -113,10 +113,6 @@ app.post('/createDaily', (req, res) => {
     })
 })
 
-app.post('/createJournalEntry', (req, res) => {
-    console.log(req);
-})
-
 app.post('/createJournal', (req, res) => {
     var newDaily = new Journal ({
         userID: req.body.userID,
