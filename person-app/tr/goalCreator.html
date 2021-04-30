@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html  lang="en" dir="ltr">
+    <head>
+        <script src="goalCscript.js"></script>
+        <style>
+            .goalTypes .b {
+            
+            
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 10px;
+            cursor: pointer;
+            
+            
+            
+            }
+
+            .goalTypes .button:hover {
+            background-color: #3e8e41;
+            }
+            textarea {
+                resize: none;
+            }
+
+        </style>
+    </head>
+    <body style="background-color:#769cec">
+        
+        <h1 style="text-align: center;">Goals</h1>
+        <br>
+
+        <h3 style="text-align: center;">Goal Title</h3>
+        
+        <textarea id="title" rows= "1" cols="10" style="position:fixed; left: 45%;"></textarea>
+        <br>
+            <h3 style="text-align: center;"> Type of goal</h3> 
+            <div class="goalTypes"  style="text-align: center;">
+                <button id="weeklyb" class="b" style="background-color: rgb(115, 114, 221); outline: 2px solid rgb(115, 114, 221);">Weekly</button>
+                <button id="Monthlyb" class="b" style="background-color: rgb(179, 21, 131); outline: 2px solid rgb(179, 21, 131);">Monthly</button>
+                <button id="yearlyb" class="b" style="background-color: rgb(79, 5, 114); outline: 2px solid rgb(79, 5, 114);">yearly</button>
+            </div>
+            <br>
+            <br>
+
+        <h3 style="text-align: center;">Goal</h3> 
+        <br>
+        <textarea id="typedGoal" rows="4" cols="60" style="position:fixed; left: 25%;"></textarea>
+        
+        <br>
+        <br>
+        <br>
+        <br>
+                <button id="submitB" class="submit" style="position:fixed; left: 45%;" >submit</button>
+    </body>
+</html>
