@@ -55,7 +55,8 @@ app.use('/createTrackerData', (req, res) => {
                 console.log(err);
                 res.end();
         } else {
-                res.send('Success');
+                //res.send('Success');
+                res.sendFile(path.join(__dirname,'/tr/tracker.html'));
                 console.log('Success')
         }
     })
