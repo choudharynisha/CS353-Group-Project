@@ -7,7 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,65 +23,56 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class SetGoalActivity extends AppCompatActivity {
+public class JournalEntryActivity extends AppCompatActivity {
 
-    private static final String TAG = "SetGoalActivity";
+    private static final String TAG = "JournalEntryActivity";
 
-    private String userID = null;
-    private String goalType;
-
-    private EditText editTxtGoalTitle;
-    private EditText editTxtGoalDescription;
+    private String userID;
+    private TextInputEditText editTxtJournalEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_goal);
+        setContentView(R.layout.activity_journal_entry);
 
-        if (userID == null){
-            userID = getIntent().getStringExtra("userID");
+        if (this.userID == null){
+            this.userID = getIntent().getStringExtra("userID");
         }
 
-        editTxtGoalTitle = findViewById(R.id.editTxtGoalTitle);
-        editTxtGoalDescription = findViewById(R.id.editTxtGoalDescription);
+        editTxtJournalEntry = findViewById(R.id.editTxtJournalEntry);
     }
 
-    protected JSONObject makeGoal(String description) {
-        JSONObject goal = new JSONObject();
+    protected JSONObject makeJournalEntry(String entry) {
+        JSONObject journalEntry = new JSONObject();
+        LocalDate date = LocalDate.now();
 
         try {
-            goal.put("userID", userID);
-            goal.put("type", goalType);
-            goal.put("description", description);
+            journalEntry.put("userID", userID);
+            journalEntry.put("date", date.toString());
+            journalEntry.put("journalEntry", entry);
 
-            return goal;
+            return journalEntry;
         } catch (JSONException e) {
             Log.e(TAG, e.getMessage());
         }
         return null;
     }
 
-    public void onClickSubmit(View view) {
-        String goalDescription = editTxtGoalDescription.getText().toString();
+    public void onClickClear(View v) {
+        editTxtJournalEntry.getText().clear();
+    }
 
-        if (goalDescription == null || goalDescription.isEmpty()) {
-            Log.v(TAG, "Submission Status: No Goal Description given. Aborting.");
-            return;
-        }
-        else if (goalType == null){
-            Log.v(TAG, "Submission status: No Goal Type specified. Aborting.");
-            return;
-        }
-        else
+    public void onClickSubmit(View v) {
+        String journalEntry = editTxtJournalEntry.getText().toString();
+
+        if (journalEntry != null && !journalEntry.isEmpty())
         {
-            Log.v(TAG, "Submission status: All goal information present. Proceeding.");
-
             try {
-                URL url = new URL("http://10.0.2.2:3000/createGoal");
+                URL url = new URL("http://10.0.2.2:3000/createJournal");
 
-                JSONObject goal =  makeGoal(goalDescription);
+                JSONObject entry = makeJournalEntry(journalEntry);
 
-                Wrapper wrapper = new Wrapper(url, goal, "goal");
+                Wrapper wrapper = new Wrapper(url, entry, "journalEntry");
                 //https://stackoverflow.com/questions/3075009/android-how-can-i-pass-parameters-to-asynctasks-onpreexecute
                 Wrapper[] wrappers = { wrapper };
                 AsyncTask<Wrapper, String, String> writeDB = new AccessWebTask().execute(wrappers);
@@ -89,31 +81,14 @@ public class SetGoalActivity extends AppCompatActivity {
                 Log.e(TAG, e.getMessage());
             }
         }
+        else
+        {
+            Log.v(TAG, "Text field empty or null. Abort submission.");
+        }
     }
 
-    public void onClickClearAll(View view) {
-        editTxtGoalTitle.getText().clear();
-        editTxtGoalDescription.getText().clear();
-        goalType = null;
-    }
-
-    public void onClickReturnMain(View view) {
-        Intent i = new Intent();
-        setResult(RESULT_OK, i);
+    public void onClickReturnToMain(View v) {
         finish();
-    }
-
-
-    public void onClickDailyButton(View view) {
-        goalType = "daily";
-    }
-
-    public void onclickWeeklyButton(View view) {
-        goalType = "weekly";
-    }
-
-    public void onclickMonthlyButton(View view) {
-        goalType = "monthly";
     }
 
     private class AccessWebTask extends AsyncTask<Wrapper, String, String> {
@@ -163,7 +138,7 @@ public class SetGoalActivity extends AppCompatActivity {
                 // make sure the response has "200 OK" as the status
                 if (responsecode != 200) {
                     String errorCode = "Problem writing to the Database: " + responsecode;
-                    Log.w(TAG, errorCode);
+                    System.out.println(errorCode);
                     return errorCode;
                 }
                 else {
@@ -192,8 +167,7 @@ public class SetGoalActivity extends AppCompatActivity {
             // this method would be called in the UI thread after doInBackground finishes
             // it can access the Views and update them asynchronously
             //https://stackoverflow.com/questions/1816458/getting-hold-of-the-outer-class-object-from-the-inner-class-object
-            editTxtGoalTitle.getText().clear();
-            editTxtGoalDescription.getText().clear();
+            editTxtJournalEntry.getText().clear();
         }
 
     }
