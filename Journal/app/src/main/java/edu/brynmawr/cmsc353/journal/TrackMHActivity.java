@@ -31,6 +31,7 @@ public class TrackMHActivity extends AppCompatActivity {
     private String stress = null;
     private String motivation = null;
 
+    //https://developer.android.com/reference/android/util/Log
     private static final String TAG = "TrackMHActivity";
 
     @Override
@@ -52,6 +53,8 @@ public class TrackMHActivity extends AppCompatActivity {
         }
         else {
             try {
+                //https://codechacha.com/en/android-cleartext-http-traffic-issue/
+                //https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted
                 //https://stackoverflow.com/questions/36811202/java-net-connectexception-fail-to-connect-to-localhost-127-0-0-1port-8080-co
                 URL url = new URL("http://10.0.2.2:3000/createDaily");
 
@@ -72,17 +75,29 @@ public class TrackMHActivity extends AppCompatActivity {
     protected JSONObject makeDaily(){
         JSONObject mhtrackers = new JSONObject();
         JSONObject daily = new JSONObject();
+        //https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html
+        //https://www.w3schools.com/java/java_date.asp
         LocalDateTime time = LocalDateTime.now();
 
         try {
             daily.put("userID", this.userID);
             daily.put("date", time.toString());
 
-            mhtrackers.put("energy", Integer.parseInt(this.energy));
-            mhtrackers.put("depression", Integer.parseInt(this.depression));
-            mhtrackers.put("anxiety", Integer.parseInt(this.anxiety));
-            mhtrackers.put("stress", Integer.parseInt(this.stress));
-            mhtrackers.put("motivation", Integer.parseInt(this.motivation));
+            if (!Objects.isNull(this.energy)){
+                mhtrackers.put("energy", Integer.parseInt(this.energy));
+            }
+            if (!Objects.isNull(this.depression)){
+                mhtrackers.put("depression", Integer.parseInt(this.depression));
+            }
+            if (!Objects.isNull(this.anxiety)){
+                mhtrackers.put("anxiety", Integer.parseInt(this.anxiety));
+            }
+            if (!Objects.isNull(this.stress)){
+                mhtrackers.put("stress", Integer.parseInt(this.stress));
+            }
+            if (!Objects.isNull(this.motivation)){
+                mhtrackers.put("motivation", Integer.parseInt(this.motivation));
+            }
 
             daily.put("trackers", mhtrackers);
 
@@ -410,6 +425,7 @@ public class TrackMHActivity extends AppCompatActivity {
         setMotivation("10");
     }
 
+    //https://developer.android.com/reference/android/os/AsyncTask
     private class AccessWebTask extends AsyncTask<Wrapper, String, String> {
 
         @Override
