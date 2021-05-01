@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));*/
 // set up BodyParser
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 var User = require('./User.js');
 var Daily = require('./Daily.js');
