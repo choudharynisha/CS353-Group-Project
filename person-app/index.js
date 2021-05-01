@@ -31,8 +31,10 @@ app.post('/tracker', (req, res) => {
 app.post('/DailyGoals', (req, res) => {
     res.sendFile(path.join(__dirname, '/tr/goalCreator.html'));
 });
-// app.use('/DailyGoals', (req, res) => { res.redirect('/public/goalCreator.html'); } );
 
+
+
+/// endpoints for web
 app.use('/createTrackerData', (req, res) => {
     let temp = JSON.parse(req.body.trackers); 
     console.log(temp); 
@@ -64,13 +66,13 @@ app.use('/createTrackerData', (req, res) => {
 
 
 app.post('/createJournalWeb', (req, res) => {
-    var newDaily = new Journal ({
+    var newJournal = new Journal ({
         userID: req.body.userID,
         date: req.body.date,
         journalEntry: req.body.journalEntry
     });
     
-    newDaily.save((err) => {
+    newJournal.save((err) => {
         if(err) {
             res.type('html').status(200);
             res.write('Failure to add the Journal to the database: ' + err);

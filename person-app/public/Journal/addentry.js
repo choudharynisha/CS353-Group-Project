@@ -1,13 +1,22 @@
 var button; // submit button
 var entry; // user entry
+var clearing; // clear button
 
 document.addEventListener('DOMContentLoaded', () => {
     // get ready to get the entry and add it to the database
     button = document.querySelector('#submit');
+    clearing = document.querySelector('#clear');
     button.addEventListener('click', () => {
         console.log("Add an entry");
         submit();
+        
+   
     });
+    clearing.addEventListener('click', () => {
+        console.log("Cleared");
+        document.getElementById("entry").value = "";
+    })
+
 });
 
 function addEntry() {
