@@ -41,7 +41,7 @@ let typeOfG = null;
                         form.method = "post"; 
                         // "/createDaily"
                         //"/createTrackerData"
-                        form.action ="/createGoal";
+                        form.action ="/createGoalWeb";
 
                         const userID = document.createElement('input'); 
                         userID.type='HIDDEN';

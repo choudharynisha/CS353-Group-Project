@@ -20,7 +20,7 @@ function addEntry() {
     // add all required attributes for the form, user entry, current date, and user ID
     form.type = "HIDDEN";
     form.method = "post";
-    form.action = "/createJournal";
+    form.action = "/createJournalWeb";
     
     userEntry.type = "HIDDEN";
     userEntry.name = "journalEntry";

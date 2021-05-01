@@ -62,6 +62,47 @@ app.use('/createTrackerData', (req, res) => {
     })
 });
 
+
+app.post('/createJournalWeb', (req, res) => {
+    var newDaily = new Journal ({
+        userID: req.body.userID,
+        date: req.body.date,
+        journalEntry: req.body.journalEntry
+    });
+    
+    newDaily.save((err) => {
+        if(err) {
+            res.type('html').status(200);
+            res.write('Failure to add the Journal to the database: ' + err);
+            console.log(err);
+            res.end();
+        } else {
+            res.sendFile(path.join(__dirname,'/public/Journal/journal.html'));
+        }
+    })
+})
+
+app.post('/createGoalWeb', (req, res) => {
+    var newGoal = new Goal ({
+        userID: req.body.userID,
+        type: req.body.type,
+        description: req.body.description
+    });
+    
+    newGoal.save((err) => {
+        if(err) {
+            res.type('html').status(200);
+            res.write('Failure to add the Goal to the database: ' + err);
+            console.log(err);
+            res.end();
+        } else {
+            res.sendFile(path.join(__dirname,'/tr/goalCreator.html'));
+        }
+    })
+})
+
+
+
 /***************************************/
 
 // endpoint for creating a new person
