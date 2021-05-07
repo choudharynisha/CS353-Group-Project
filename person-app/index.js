@@ -305,43 +305,6 @@ app.use('/getGoals', (req, res) => {
     })
 })
 
-// endpoint for accessing data via the web api
-// to use this, make a request for /api to get an array of all Person objects
-// or /api?name=[whatever] to get a single object
-app.use('/api', (req, res) => {
-    // construct the query object
-    var queryObject = {};
-    
-    if(req.query.name) {
-        // if there's a name in the query parameter, use it here
-        queryObject = { "name" : req.query.name };
-    }
-    
-    Person.find( queryObject, (err, persons) => {
-        console.log(persons);
-        
-        if(err) {
-            console.log('uh oh' + err);
-            res.json({});
-        } else if(persons.length == 0) {
-            // no objects found, so send back empty json
-            res.json({});
-        } else if(persons.length == 1 ) {
-            var person = persons[0];
-            // send back a single JSON object
-            res.json( { "name" : person.name , "age" : person.age } );
-        } else {
-            // construct an array out of the result
-            var returnArray = [];
-            persons.forEach( (person) => {
-                returnArray.push( { "name" : person.name, "age" : person.age } );
-            });
-            // send it back as JSON Array
-            res.json(returnArray); 
-        }
-    });
-});
-
 /*************************************************/
 
 app.use('/public', express.static('public'));
