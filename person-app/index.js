@@ -195,12 +195,14 @@ app.post('/createGoal', (req, res) => {
     })
 })
 
-app.use('/getUser', (req, res) => {
+// used for logging in
+// returned object can be used to check password (very unsafe and cursed)
+app.get('/getUser', (req, res) => {
     // construct the query object
     let queryObj = {};
     
-    if(req.body.email) {
-        queryObj = { "email" : req.body.email };
+    if(req.query.email) {
+        queryObj = { "email" : req.query.email };
     }
     
     User.findOne(queryObj, (err, users) => {
@@ -216,16 +218,15 @@ app.use('/getUser', (req, res) => {
     })
 })
 
-app.use('/getDailies', (req, res) => {
+app.get('/getDailies', (req, res) => {
     // construct the query object
     let queryObj = {};
     
-    if(req.body.userID) {
-        queryObj = { "userID" : req.body.userID};
-    }
-    
-    if(req.body.date) {
-        queryObj = { "date" : req.body.date};
+    if(req.query.userID && req.query.date) {
+        queryObj = { 
+                    "userID" : req.query.userID,
+                    "date" : {$gte : req.query.date}
+                   };
     }
     
     Daily.find(queryObj, (err, dailies) => {
@@ -239,6 +240,36 @@ app.use('/getDailies', (req, res) => {
             // construct an array out of the result
             let returnArray = [];
             dailies.forEach( (daily) => {
+                returnArray.push(daily);
+            });
+            // send it back as JSON Array
+            res.json(returnArray); 
+        }
+    })
+})
+
+app.get('/getJournals', (req, res) => {
+    // construct the query object
+    let queryObj = {};
+    
+    if(req.query.userID && req.query.date) {
+        queryObj = { 
+                    "userID" : req.query.userID,
+                    "date" : {$gte : req.query.date}
+                   };
+    }
+    
+    Journal.find(queryObj, (err, journals) => {
+        if(err) {
+            console.log('Failure to retrieve the Journal/s from the database: ' + err);
+            res.json({});
+        } else if(journals.length == 0) {
+            console.log('No match found in Journals');
+            res.json({});
+        } else {
+            // construct an array out of the result
+            let returnArray = [];
+            journals.forEach( (daily) => {
                 returnArray.push(daily);
             });
             // send it back as JSON Array
@@ -269,63 +300,10 @@ app.use('/getGoals', (req, res) => {
                 returnArray.push(goal);
             });
             // send it back as JSON Array
-            res.json(returnArray); 
+            res.json(returnArray);
         }
     })
 })
-
-//TODO: finish this endpoint
-app.use('/updateHappy', (req, res) => {
-    let queryObj = {};
-    let action = null;//add, update, delete, or delete all
-    let title = null;
-    let happyList = null;
-    
-    if(req.body.userID && req.body.action) {
-        queryObj = { "userID" : req.body.userID};
-        action = req.body.action;
-    }
-    
-    if(req.body.action !== "delete all") {
-        title = req.body.title;
-    }
-    
-    happyList = User.find(queryObj, (err, users) => {
-        if(err) {
-            console.log('Failure to retrieve the User from the database: ' + err);
-            res.json({});
-        }
-    })
-})
-
-/*// endpoint for showing all the people
-app.use('/all', (req, res) => {
-    // find all the Person objects in the database
-    schemas.find( {}, (err, persons) => {
-        if(err) {
-            res.type('html').status(200);
-            console.log('uh oh' + err);
-            res.write(err);
-        } else {
-            if(persons.length == 0) {
-                res.type('html').status(200);
-                res.write('There are no people');
-                res.end();
-                return;
-            } else {
-                res.type('html').status(200);
-                res.write('Here are the people in the database:');
-                res.write('<ul>');
-                // show all the people
-                persons.forEach( (person) => {
-                    res.write('<li>Name: ' + person.name + '; age: ' + person.age + '</li>');
-                    });
-                res.write('</ul>');
-                res.end();
-            }
-        }
-        }).sort({ 'age': 'asc' }); // this sorts them BEFORE rendering the results
-    });*/
 
 // endpoint for accessing data via the web api
 // to use this, make a request for /api to get an array of all Person objects
@@ -363,9 +341,6 @@ app.use('/api', (req, res) => {
         }
     });
 });
-
-
-
 
 /*************************************************/
 
