@@ -208,11 +208,12 @@ app.get('/getUser', (req, res) => {
     User.findOne(queryObj, (err, users) => {
         if(err) {
             console.log('Failure to retrieve the User from the database: ' + err);
-            res.json({});
-        } else if(users.length == 0) {
+            res.json({"error":"FailureToReturnUser"});
+        } else if(users == null) {
             console.log('No match found in Users');
-            res.json({});
+            res.json({"error":"EmailNotFound"});
         } else {
+            console.log("Success found user.")
             res.json(users);
         }
     })
