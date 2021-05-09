@@ -17,11 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Journal">
-        <activity android:name=".WeeklyStatsActivity"></activity>
+        <activity android:name=".CreateAccActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".WeeklyStatsActivity" />
         <activity android:name=".JournalEntryActivity" />
         <activity android:name=".SetGoalActivity" />
         <activity android:name=".TrackMHActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

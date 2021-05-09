@@ -143,17 +143,16 @@
             android:layout_marginTop="35dp">
 
             <Button
-                android:id="@+id/submitButton"
+                android:id="@+id/returnMainButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginHorizontal="10dp"
-                app:backgroundTint="#4B59AE"
-                tools:ignore="ButtonStyle,HardcodedText"
-                android:text="submit"
+                android:layout_weight="1"
+                android:onClick="onClickReturnMain"
+                android:text="back"
                 android:textColor="#FFFF"
-                android:onClick="onClickSubmit"
-                />
+                app:backgroundTint="#93984E"
+                tools:ignore="ButtonStyle,HardcodedText"/>
 
             <Button
                 android:id="@+id/clearAllButton"
@@ -168,16 +167,19 @@
                 tools:ignore="ButtonStyle,HardcodedText"/>
 
             <Button
-                android:id="@+id/returnMainButton"
+                android:id="@+id/submitButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="10dp"
                 android:layout_weight="1"
-                android:onClick="onClickReturnMain"
-                android:text="return"
+                android:layout_marginHorizontal="10dp"
+                app:backgroundTint="#4B59AE"
+                tools:ignore="ButtonStyle,HardcodedText"
+                android:text="submit"
                 android:textColor="#FFFF"
-                app:backgroundTint="#93984E"
-                tools:ignore="ButtonStyle,HardcodedText"/>
+                android:onClick="onClickSubmit"
+                />
+
+
 
         </LinearLayout>
 

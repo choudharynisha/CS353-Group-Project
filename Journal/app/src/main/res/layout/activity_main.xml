@@ -69,7 +69,8 @@
             app:backgroundTint="#B6839B"
             tools:ignore="HardcodedText"/>
 
-        <Button android:id="@+id/launchDashboard"
+        <Button
+            android:id="@+id/launchDashboard"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginLeft="30dp"
@@ -79,8 +80,8 @@
             android:onClick="onClickLaunchDashboard"
             android:text="Dashboard"
             android:textSize="23dp"
-            app:backgroundTint="#B6839B"
-            tools:ignore="HardcodedText"/>
+            app:backgroundTint="#558580"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 

@@ -486,6 +486,7 @@ public class TrackMHActivity extends AppCompatActivity {
                             response.append(responseLine.trim());
                         }
                         System.out.println(response.toString());
+                        conn.disconnect();
                         return response.toString();
                     }
                 }

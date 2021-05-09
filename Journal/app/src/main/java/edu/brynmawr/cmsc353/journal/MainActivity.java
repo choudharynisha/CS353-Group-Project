@@ -9,19 +9,25 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.net.URL;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
 //    private final String userID = "608472f6074c2832e4e1dc9b";
 //    private final String email = "cat@fakemail.com";
     private final String email = "dog@fakemail.com";
-    private final String userID = "608c19f532c5da92d1d6e0f9";
+    private String userID = null;
+    //"608c19f532c5da92d1d6e0f9";
     private static final int COUNTER_ACTIVITY_ID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(Objects.isNull(userID)){
+            userID = getIntent().getStringExtra("id");
+        }
 
     }
 
