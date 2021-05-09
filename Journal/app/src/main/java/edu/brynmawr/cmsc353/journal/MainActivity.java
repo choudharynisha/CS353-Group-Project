@@ -72,4 +72,10 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("userID", this.userID);
         startActivity(i);
     }
+
+    public void onClickLaunchDashboard(View view) {
+        Intent i = new Intent(this, WeeklyStatsActivity.class);
+        i.putExtra("userID", this.userID);
+        startActivityForResult(i, COUNTER_ACTIVITY_ID);
+    }
 }
