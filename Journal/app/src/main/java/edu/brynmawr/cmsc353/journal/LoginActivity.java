@@ -157,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
                         LoginActivity.this.showError("email does not exist in the database");
                     }
                     else {
-
+                        LoginActivity.this.showError("unspecified error");
                     }
                     LoginActivity.this.clearAll();
                 }
@@ -168,6 +168,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         String id = String.valueOf(obj.get("_id"));
                         Log.v(TAG, "user id" + id);
+
+                        LoginActivity.this.clearAll();
 
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                         i.putExtra("id", id);

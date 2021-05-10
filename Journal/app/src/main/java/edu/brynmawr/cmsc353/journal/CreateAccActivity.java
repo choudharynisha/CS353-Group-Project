@@ -2,6 +2,7 @@ package edu.brynmawr.cmsc353.journal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,7 +42,7 @@ public class CreateAccActivity extends AppCompatActivity {
         nameEditText = findViewById(R.id.editTxtName);
         emailEditText = findViewById(R.id.editTxtEmail);
         passwordEditText = findViewById(R.id.editTxtPwd);
-        errorMsg = findViewById(R.id.errorLogin);
+        errorMsg = findViewById(R.id.errorCreateAcc);
 
         if (errorMsg.getVisibility() == View.VISIBLE){
             errorMsg.setVisibility(View.INVISIBLE);
@@ -71,7 +72,7 @@ public class CreateAccActivity extends AppCompatActivity {
 
                 URL[] urls = { url };
 
-                AsyncTask<URL, String, String> writeDB = new LoginActivity.AccessWebTask().execute(urls);
+                AsyncTask<URL, String, String> writeDB = new CreateAccActivity.CreateUser().execute(urls);
 
             } catch (MalformedURLException e) {
                 Log.v(TAG, "MalformedURLException");
@@ -85,7 +86,7 @@ public class CreateAccActivity extends AppCompatActivity {
         errorMsg.setVisibility(View.VISIBLE);
     }
 
-    private class AccessWebTask extends AsyncTask<URL, String, String> {
+    private class CreateUser extends AsyncTask<URL, String, String> {
 
         @Override
         protected String doInBackground(URL... urls) {
@@ -161,44 +162,55 @@ public class CreateAccActivity extends AppCompatActivity {
 
             if (s.equals("FailureToConnectToServer")){
                 CreateAccActivity.this.showError("connection failure, please try again later");
-                LoginActivity.this.clearAll();
+                CreateAccActivity.this.clearAll();
             }
             try {
                 JSONObject obj = new JSONObject(s);
                 if (obj.has("error")){
                     String error = String.valueOf(obj.get("error"));
-                    if (error.equals("FailureToReturnUser")){
-                        LoginActivity.this.showError("failure to find user in database");
+                    if (error.equals("FailureToAddUser")){
+                        CreateAccActivity.this.showError("failure to add user to the database");
                     }
-                    else if(error.equals("EmailNotFound")){
-                        LoginActivity.this.showError("email does not exist in the database");
+                    else if(error.equals("emailAlreadyExists")){
+                        CreateAccActivity.this.showError("email already exists in the database");
                     }
                     else {
 
                     }
-                    LoginActivity.this.clearAll();
+                    CreateAccActivity.this.clearAll();
                 }
-                else {
-                    String storedPW = String.valueOf(obj.get("password"));
-                    if (storedPW.equals(LoginActivity.this.enteredPwd)){
-                        Log.v(TAG, "Passwords match");
+                else {//"success", successfully added newUser to database
+                    String id = String.valueOf(obj.get("id"));
 
-                        String id = String.valueOf(obj.get("_id"));
-                        Log.v(TAG, "user id" + id);
+                    Log.v(TAG, "user id" + id);
 
-                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                        i.putExtra("id", id);
-                        startActivity(i);
-                    }
-                    else {
-                        LoginActivity.this.showError("incorrect password");
-                        LoginActivity.this.clearAll();
-                    }
+                    CreateAccActivity.this.clearAll();
+
+                    Intent i = new Intent(CreateAccActivity.this, MainActivity.class);
+                    i.putExtra("id", id);
+                    startActivity(i);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
+    }
+
+    protected void clearVars(){
+        enteredName = null;
+        enteredEmail = null;
+        enteredPwd = null;
+    }
+
+    protected void clearEditTexts(){
+        nameEditText.setText("");
+        emailEditText.setText("");
+        passwordEditText.setText("");
+    }
+
+    protected void clearAll(){
+        clearEditTexts();
+        clearVars();
     }
 }
