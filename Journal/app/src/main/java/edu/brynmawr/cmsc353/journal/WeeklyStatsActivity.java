@@ -79,7 +79,7 @@ public class WeeklyStatsActivity extends AppCompatActivity {
             setValue("depression", depression);
             setValue("anxiety", anxiety);
             setValue("stress", stress);
-            setValue("stress", motivation);
+            setValue("motivation", motivation);
         }
 
     }
@@ -123,28 +123,32 @@ public class WeeklyStatsActivity extends AppCompatActivity {
                 String prevDate = String.valueOf(prev.get("date")).split("T")[0];
 
                 String currDate = String.valueOf(curr.get("date")).split("T")[0];
-                if(prevDate.equals(currDate)){
+                if(!prevDate.equals(currDate)){
                     Integer energy = null;
                     Integer depression = null;
                     Integer anxiety = null;
                     Integer stress = null;
                     Integer motivation = null;
-                    if (prev.has("energy")){
-                        energy = (Integer) prev.get("energy");
+
+                    JSONObject prevTrackers = prev.getJSONObject("trackers");
+
+                    if (prevTrackers.has("energy")){
+                        energy = prevTrackers.getInt("energy");
                     }
-                    if (prev.has("depression")){
-                        depression = (Integer) prev.get("depression");
+                    if (prevTrackers.has("depression")){
+                        depression = prevTrackers.getInt("depression");
                     }
-                    if (prev.has("anxiety")){
-                        anxiety = (Integer) prev.get("anxiety");
+                    if (prevTrackers.has("anxiety")){
+                        anxiety = prevTrackers.getInt("anxiety");
                     }
-                    if (prev.has("stress")){
-                        stress = (Integer) prev.get("stress");
+                    if (prevTrackers.has("stress")){
+                        stress = prevTrackers.getInt("stress");
                     }
-                    if (prev.has("motivation")){
-                        motivation = (Integer) prev.get("motivation");
+                    if (prevTrackers.has("motivation")){
+                        motivation = prevTrackers.getInt("motivation");
                     }
                     seriesData.add(new CustomDataEntry(prevDate, energy, depression, anxiety, stress, motivation));
+                    Log.v("date", prevDate + ", " + energy + ", " + depression + ", " + anxiety+ ", " + stress+ ", " + motivation);
                 }
 
                 prev = curr;
@@ -214,7 +218,7 @@ public class WeeklyStatsActivity extends AppCompatActivity {
                 .offsetY(5d);
 
         Line series5 = cartesian.line(series5Mapping);
-        series5.name("Anxiety");
+        series5.name("Motivation");
         series5.hovered().markers().enabled(true);
         series5.hovered().markers()
                 .type(MarkerType.CIRCLE)
