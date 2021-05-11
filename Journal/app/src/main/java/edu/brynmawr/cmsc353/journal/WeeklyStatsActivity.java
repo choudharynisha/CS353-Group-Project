@@ -66,7 +66,9 @@ public class WeeklyStatsActivity extends AppCompatActivity {
 
         Log.v("url", url.toString());
 
-        AsyncTask<URL, String, String> getDailies = new AccessWebTask().execute();
+        URL[] urls = {url};
+
+        AsyncTask<URL, String, String> getDailies = new AccessWebTask().execute(urls);
 
     }
 
@@ -263,7 +265,7 @@ public class WeeklyStatsActivity extends AppCompatActivity {
                         while ((responseLine = br.readLine()) != null) {
                             response.append(responseLine.trim());
                         }
-                        //Log.v(TAG, response.toString());
+                        Log.v(TAG, response.toString());
                         conn.disconnect();
                         return response.toString();
                     }
