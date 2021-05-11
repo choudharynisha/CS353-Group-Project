@@ -138,7 +138,7 @@ app.post('/createGoalWeb', (req, res) => {
         }
     })
 })
-
+//******* */
 app.post('/viewjournals', (req, res) => {
     let queryObj = {};
     
@@ -163,9 +163,10 @@ app.post('/viewjournals', (req, res) => {
             journals.forEach( (daily) => {
                 returnArray.push(daily);
             });
+            //res.json = returnArray; 
             // send it back as JSON Array
-            res.json(returnArray);
-            //res.sendFile(path.join(__dirname,'/public/Journal/viewJournals.html')); 
+            res.cookie('user', returnArray);
+            res.sendFile(path.join(__dirname,'/public/Journal/viewJournals.html')); 
         }
     })
 
