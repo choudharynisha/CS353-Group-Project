@@ -113,8 +113,7 @@ app.post('/createGoalWeb', (req, res) => {
 
 /***************************************/
 
-// endpoint for creating a new person
-// this is the action of new user form
+// endpoint for creating a new User
 app.post('/createUser', (req, res) => {
         // construct the User from the form data which is in the request body
         var newUser = new User ({
@@ -125,15 +124,22 @@ app.post('/createUser', (req, res) => {
         });
         
         // save the User to the database 
-        newUser.save( (err) => { 
+        newUser.save( (err, user) => { 
             if(err) {
-                res.type('html').status(200);
-                res.write('Failure to add the User to the database: ' + err);
+                //res.type('html').status(200);
+                if (err.code === 11000){
+                    res.send({"error" : "emailAlreadyExists"});
+                }
+                else {
+                    res.send({"error" : "failureToAddUser"});
+                    
+                }
                 console.log(err);
-                res.end();
+                
             } else {
-                // display the "successfull created" message
-                res.send('Success');
+                //https://stackoverflow.com/questions/6854431/how-do-i-get-the-objectid-after-i-save-an-object-in-mongoose/47002504
+                console.log(user._id);
+                res.send({"success" : "Success", "id" : user._id});
             }
         } );
     }
