@@ -24,6 +24,9 @@ app.use(express.static(path.join (__dirname,'/public/')));
 
 app.use(express.static(path.join(__dirname,'/tr')));
 
+app.use(express.static(path.join(__dirname,'/Dashboard/visual.js'))); 
+
+
 app.post('/tracker', (req, res) => {
     res.sendFile(path.join(__dirname, '/tr/tracker.html'));
 });
@@ -32,7 +35,10 @@ app.post('/DailyGoals', (req, res) => {
     res.sendFile(path.join(__dirname, '/tr/goalCreator.html'));
 });
 
+app.post('/Dashboard', (req, res) =>{
+    res.sendFile(path.join(__dirname, '/Dashboard/Dashboard.html'));
 
+});
 
 /// endpoints for web
 app.use('/createTrackerData', (req, res) => {
