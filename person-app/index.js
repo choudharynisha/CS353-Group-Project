@@ -36,6 +36,36 @@ app.post('/DailyGoals', (req, res) => {
 });
 
 app.post('/Dashboard', (req, res) =>{
+
+     // construct the query object
+     let queryObj = {};
+    
+     if(req.query.userID && req.query.date) {
+         queryObj = { 
+                     "userID" : req.query.userID,
+                     "date" : {$gte : req.query.date}
+                    };
+     }
+     
+     Daily.find(queryObj, (err, dailies) => {
+         if(err) {
+             console.log('Failure to retrieve the Daily/ies from the database: ' + err);
+             res.json({});
+         } 
+         else if(dailies.length == 0) {
+             console.log('No match found in Dailies');
+             res.json({});
+         } 
+         else {
+             // construct an array out of the result
+             let returnArray = [];
+             dailies.forEach( (daily) => {
+                 returnArray.push(daily);
+             });
+             // send it back as JSON Array
+             //res.json(returnArray); 
+         }
+     })
     res.sendFile(path.join(__dirname, '/Dashboard/Dashboard.html'));
 
 });
@@ -52,9 +82,9 @@ app.use('/createTrackerData', (req, res) => {
         // req.body.trackers,
     });
     
-    console.log(req.body.userID);
-    console.log(req.body.date);
-    console.log(req.body.trackers);
+    //console.log(req.body.userID);
+    //console.log(req.body.date);
+   // console.log(req.body.trackers);
     
     newDaily.save((err) => {
         if(err) {
@@ -109,7 +139,38 @@ app.post('/createGoalWeb', (req, res) => {
     })
 })
 
+app.post('/viewjournals', (req, res) => {
+    let queryObj = {};
+    
+    if(req.query.userID && req.query.date) {
+        queryObj = { 
+                    "userID" : req.query.userID,
+                    "date" : {$gte : req.query.date}
+                   };
+    }
+    Journal.find(queryObj, (err, journals) => {
+        if(err) {
+            console.log('Failure to retrieve the Journal/s from the database: ' + err);
+            res.json({});
+        } 
+        else if(journals.length == 0) {
+            console.log('No match found in Journals');
+            res.json({});
+        } 
+        else {
+            // construct an array out of the result
+            let returnArray = [];
+            journals.forEach( (daily) => {
+                returnArray.push(daily);
+            });
+            // send it back as JSON Array
+            res.json(returnArray);
+            //res.sendFile(path.join(__dirname,'/public/Journal/viewJournals.html')); 
+        }
+    })
 
+   
+});
 
 /***************************************/
 
