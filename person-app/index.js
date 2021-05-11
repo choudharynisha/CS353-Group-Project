@@ -239,10 +239,10 @@ app.get('/getDailies', (req, res) => {
     Daily.find(queryObj, (err, dailies) => {
         if(err) {
             console.log('Failure to retrieve the Daily/ies from the database: ' + err);
-            res.json({});
+            res.json([{"error" : "FailureToReturnDailies"}]);
         } else if(dailies.length == 0) {
             console.log('No match found in Dailies');
-            res.json({});
+            res.json([{"error" : "DailiesNotFound"}]);
         } else {
             // construct an array out of the result
             let returnArray = [];
@@ -250,6 +250,7 @@ app.get('/getDailies', (req, res) => {
                 returnArray.push(daily);
             });
             // send it back as JSON Array
+            console.log("Sending now");
             res.json(returnArray); 
         }
     })
