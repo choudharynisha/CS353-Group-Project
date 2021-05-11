@@ -1,7 +1,11 @@
 package edu.brynmawr.cmsc353.journal;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -18,17 +22,67 @@ import com.anychart.enums.TooltipPositionMode;
 import com.anychart.graphics.vector.Stroke;
 //import com.anychart.sample.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONArray;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class WeeklyStatsActivity extends AppCompatActivity {
+
+    private String userID = null;
+    private String TAG = "WeeklyStatsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_stats);
 
+        if (Objects.isNull(this.userID)){
+            this.userID = getIntent().getStringExtra("userID");
+        }
+
+        this.userID = "12345";
+
+        LocalDate date = LocalDate.now().minusDays(7);
+
+        URL url = null;
+
+        try {
+            url = new URL("http://10.0.2.2:3000/getDailies?userID=" + userID + "&date=" + date.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.v("url", url.toString());
+
+        AsyncTask<URL, String, String> getDailies = new AccessWebTask().execute();
+
+    }
+
+    private class CustomDataEntry extends ValueDataEntry {
+
+        CustomDataEntry(String x, Number energy, Number depression, Number anxiety, Number stress, Number motivation) {
+            super(x, energy);
+            setValue("depression", depression);
+            setValue("anxiety", anxiety);
+            setValue("stress", stress);
+            setValue("stress", motivation);
+        }
+
+    }
+
+    protected void createGraph(JSONArray dailies){
         AnyChartView anyChartView = findViewById(R.id.lineGraphView);
         anyChartView.setProgressBar(findViewById(R.id.progress_bar));
 
@@ -52,39 +106,65 @@ public class WeeklyStatsActivity extends AppCompatActivity {
         cartesian.xAxis(0).labels().padding(5d, 5d, 5d, 5d);
 
         List<DataEntry> seriesData = new ArrayList<>();
-        seriesData.add(new CustomDataEntry("1986", 3.6, null, 2.8));
-        seriesData.add(new CustomDataEntry("1987", 7.1, 4.0, 4.1));
-        seriesData.add(new CustomDataEntry("1988", 8.5, 6.2, 5.1));
-        seriesData.add(new CustomDataEntry("1989", 9.2, 11.8, 6.5));
-        seriesData.add(new CustomDataEntry("1990", 10.1, 13.0, 12.5));
-        seriesData.add(new CustomDataEntry("1991", 11.6, 13.9, 18.0));
-        seriesData.add(new CustomDataEntry("1992", 16.4, 18.0, 21.0));
-        seriesData.add(new CustomDataEntry("1993", 18.0, 23.3, 20.3));
-        seriesData.add(new CustomDataEntry("1994", 13.2, 24.7, 19.2));
-        seriesData.add(new CustomDataEntry("1995", 12.0, 18.0, 14.4));
-        seriesData.add(new CustomDataEntry("1996", 3.2, 15.1, 9.2));
-        seriesData.add(new CustomDataEntry("1997", 4.1, 11.3, 5.9));
-        seriesData.add(new CustomDataEntry("1998", 6.3, 14.2, 5.2));
-        seriesData.add(new CustomDataEntry("1999", 9.4, 13.7, 4.7));
-        seriesData.add(new CustomDataEntry("2000", 11.5, 9.9, 4.2));
-        seriesData.add(new CustomDataEntry("2001", 13.5, null, 1.2));
-        seriesData.add(new CustomDataEntry("2002", 14.8, 13.5, 5.4));
-        seriesData.add(new CustomDataEntry("2003", 16.6, 15.1, 6.3));
-        seriesData.add(new CustomDataEntry("2004", 18.1, 17.9, 8.9));
-        seriesData.add(new CustomDataEntry("2005", 17.0, 18.9, 10.1));
-        seriesData.add(new CustomDataEntry("2006", 16.6, 20.3, 11.5));
-        seriesData.add(new CustomDataEntry("2007", 14.1, 20.7, 12.2));
-        seriesData.add(new CustomDataEntry("2008", 15.7, 21.6, 10));
-        seriesData.add(new CustomDataEntry("2009", 12.0, 22.5, 8.9));
+
+        JSONObject prev = null;
+
+        Log.v(TAG, String.valueOf(dailies.getClass()));
+        Log.v(TAG, dailies.toString());
+        for (int i = 0; i < dailies.length(); i++){
+            Log.v(TAG, "Looping" + i);
+            try {
+                JSONObject curr = dailies.getJSONObject(i);
+                if(prev == null) {
+                    prev = curr;
+                }
+                String prevDate = String.valueOf(prev.get("date")).split("T")[0];
+
+                String currDate = String.valueOf(curr.get("date")).split("T")[0];
+                if(prevDate.equals(currDate)){
+                    Integer energy = null;
+                    Integer depression = null;
+                    Integer anxiety = null;
+                    Integer stress = null;
+                    Integer motivation = null;
+                    if (prev.has("energy")){
+                        energy = (Integer) prev.get("energy");
+                    }
+                    if (prev.has("depression")){
+                        depression = (Integer) prev.get("depression");
+                    }
+                    if (prev.has("anxiety")){
+                        anxiety = (Integer) prev.get("anxiety");
+                    }
+                    if (prev.has("stress")){
+                        stress = (Integer) prev.get("stress");
+                    }
+                    if (prev.has("motivation")){
+                        motivation = (Integer) prev.get("motivation");
+                    }
+                    seriesData.add(new CustomDataEntry(prevDate, energy, depression, anxiety, stress, motivation));
+                }
+
+                prev = curr;
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
         Set set = Set.instantiate();
         set.data(seriesData);
-        Mapping series1Mapping = set.mapAs("{ x: 'x', value: 'value' }");
-        Mapping series2Mapping = set.mapAs("{ x: 'x', value: 'value2' }");
-        Mapping series3Mapping = set.mapAs("{ x: 'x', value: 'value3' }");
+        Mapping series1Mapping = set.mapAs("{ x: 'x', value: 'energy' }");
+        Mapping series2Mapping = set.mapAs("{ x: 'x', value: 'depression' }");
+        Mapping series3Mapping = set.mapAs("{ x: 'x', value: 'anxiety' }");
+        Mapping series4Mapping = set.mapAs("{ x: 'x', value: 'stress' }");
+        Mapping series5Mapping = set.mapAs("{ x: 'x', value: 'motivation' }");
+
 
         Line series1 = cartesian.line(series1Mapping);
-        series1.name("Brandy");
+        series1.name("Energy");
         series1.hovered().markers().enabled(true);
         series1.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -96,7 +176,7 @@ public class WeeklyStatsActivity extends AppCompatActivity {
                 .offsetY(5d);
 
         Line series2 = cartesian.line(series2Mapping);
-        series2.name("Whiskey");
+        series2.name("Depression");
         series2.hovered().markers().enabled(true);
         series2.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -108,7 +188,7 @@ public class WeeklyStatsActivity extends AppCompatActivity {
                 .offsetY(5d);
 
         Line series3 = cartesian.line(series3Mapping);
-        series3.name("Tequila");
+        series3.name("Anxiety");
         series3.hovered().markers().enabled(true);
         series3.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -119,19 +199,115 @@ public class WeeklyStatsActivity extends AppCompatActivity {
                 .offsetX(5d)
                 .offsetY(5d);
 
+        Line series4 = cartesian.line(series4Mapping);
+        series4.name("Stress");
+        series4.hovered().markers().enabled(true);
+        series4.hovered().markers()
+                .type(MarkerType.CIRCLE)
+                .size(4d);
+        series4.tooltip()
+                .position("right")
+                .anchor(Anchor.LEFT_CENTER)
+                .offsetX(5d)
+                .offsetY(5d);
+
+        Line series5 = cartesian.line(series5Mapping);
+        series5.name("Anxiety");
+        series5.hovered().markers().enabled(true);
+        series5.hovered().markers()
+                .type(MarkerType.CIRCLE)
+                .size(4d);
+        series5.tooltip()
+                .position("right")
+                .anchor(Anchor.LEFT_CENTER)
+                .offsetX(5d)
+                .offsetY(5d);
+
         cartesian.legend().enabled(true);
         cartesian.legend().fontSize(13d);
         cartesian.legend().padding(0d, 0d, 10d, 0d);
 
         anyChartView.setChart(cartesian);
+
     }
 
-    private class CustomDataEntry extends ValueDataEntry {
+    private class AccessWebTask extends AsyncTask<URL, String, String> {
 
-        CustomDataEntry(String x, Number value, Number value2, Number value3) {
-            super(x, value);
-            setValue("value2", value2);
-            setValue("value3", value3);
+        @Override
+        protected String doInBackground(URL... urls) {
+            try {
+                URL url = urls[0];
+
+                //represents the connection to the URL
+                Log.v(TAG, url.toString());
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestMethod("GET");
+
+                conn.connect();
+
+                // now the response comes back
+                int responsecode = conn.getResponseCode();
+
+                // make sure the response has "200 OK" as the status
+                if (responsecode != 200) {
+                    String errorCode = "Problem writing to the Database: " + responsecode;
+                    Log.v(TAG, errorCode);
+                    return "FailureToConnectToServer";
+                } else {
+                    try (BufferedReader br = new BufferedReader(
+                            new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+                        StringBuilder response = new StringBuilder();
+                        String responseLine = null;
+                        while ((responseLine = br.readLine()) != null) {
+                            response.append(responseLine.trim());
+                        }
+                        //Log.v(TAG, response.toString());
+                        conn.disconnect();
+                        return response.toString();
+                    }
+                }
+            } catch (java.net.ConnectException e) {
+                e.printStackTrace();
+                return "FailureToConnectToServer";
+            } catch (Exception e) {
+                e.printStackTrace();
+                return e.toString();
+            }
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Log.v(TAG, s);
+
+            //Need to print appropriate error
+            if (s.equals("FailureToConnectToServer")) {
+                //WeeklyStatsActivity.this.showError("connection failure, please try again later");
+                //WeeklyStatsActivity.this.clearAll();
+            }
+            try {
+                JSONArray arr = new JSONArray(s);
+                JSONObject obj = arr.getJSONObject(0);
+                if (obj.has("error")) {
+                    String error = String.valueOf(obj.get("error"));
+                    if (error.equals("FailureToReturnDailies")) {
+
+                        //LoginActivity.this.showError("failure to find user in database");
+                    } else if (error.equals("EmailNotFound")) {
+                        //LoginActivity.this.showError("email does not exist in the database");
+                    } else {
+                        //LoginActivity.this.showError("unspecified error");
+                    }
+                    //LoginActivity.this.clearAll();
+                } else {
+                    WeeklyStatsActivity.this.createGraph(arr);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
 
     }
