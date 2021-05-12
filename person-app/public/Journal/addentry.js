@@ -1,22 +1,21 @@
-var button; // submit button
+var submitting; // submit button
 var entry; // user entry
 var clearing; // clear button
 
 document.addEventListener('DOMContentLoaded', () => {
     // get ready to get the entry and add it to the database
-    button = document.querySelector('#submit');
+    submitting = document.querySelector('#submit');
     clearing = document.querySelector('#clear');
-    button.addEventListener('click', () => {
+    
+    submitting.addEventListener('click', () => {
         console.log("Add an entry");
         submit();
-        
-   
     });
+    
     clearing.addEventListener('click', () => {
         console.log("Cleared");
         document.getElementById("entry").value = "";
     })
-
 });
 
 function addEntry() {
@@ -61,10 +60,12 @@ function getEntry() {
         // object = two indices of "entry" and whatever the inserted object was
         let input = JSON.stringify(object[1]);
         let today = JSON.stringify(new Date());
+        
         entry = '{ "userID":"1234", ' +
             '"date":' + today + ', ' +
             '"entry":' + input + '}';
         entry = JSON.parse(entry);
+        
         console.log(entry);
     }
 } // getEntry()
