@@ -33,29 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:clickable="false"
-            android:gravity="center"
-            android:text="Goal Title"
-            android:textSize="20sp"
-            app:backgroundTint="#5A3C6A" />
-
-        <EditText
-            android:id="@+id/editTxtGoalTitle"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="5dp"
-            android:background="#EDDAE3"
-            android:inputType="textMultiLine|textNoSuggestions"
-            android:lines="1"
-            android:scrollbars="horizontal"
-            android:textColor="#7294a3"
-            android:textSize="30sp" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
             android:clickable="false"
             android:gravity="center"
@@ -72,7 +49,7 @@
             android:background="#EDDAE3"
             android:gravity="top"
             android:inputType="textMultiLine|textNoSuggestions"
-            android:lines="5"
+            android:lines="9"
             android:paddingHorizontal="5dp"
             android:paddingBottom="5dp"
             android:scrollbars="vertical"

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +30,6 @@ public class SetGoalActivity extends AppCompatActivity {
     private String userID = null;
     private String goalType;
 
-    private EditText editTxtGoalTitle;
     private EditText editTxtGoalDescription;
 
     @Override
@@ -41,7 +41,6 @@ public class SetGoalActivity extends AppCompatActivity {
             userID = getIntent().getStringExtra("userID");
         }
 
-        editTxtGoalTitle = findViewById(R.id.editTxtGoalTitle);
         editTxtGoalDescription = findViewById(R.id.editTxtGoalDescription);
     }
 
@@ -65,10 +64,18 @@ public class SetGoalActivity extends AppCompatActivity {
 
         if (goalDescription == null || goalDescription.isEmpty()) {
             Log.v(TAG, "Submission Status: No Goal Description given. Aborting.");
+            Toast.makeText(
+                    getApplicationContext(),
+                    "goal description is a required field",
+                    Toast.LENGTH_LONG).show();
             return;
         }
         else if (goalType == null){
             Log.v(TAG, "Submission status: No Goal Type specified. Aborting.");
+            Toast.makeText(
+                    getApplicationContext(),
+                    "goal type is a required field",
+                    Toast.LENGTH_LONG).show();
             return;
         }
         else
@@ -92,7 +99,7 @@ public class SetGoalActivity extends AppCompatActivity {
     }
 
     public void onClickClearAll(View view) {
-        editTxtGoalTitle.getText().clear();
+        //editTxtGoalTitle.getText().clear();
         editTxtGoalDescription.getText().clear();
         goalType = null;
     }
@@ -192,8 +199,9 @@ public class SetGoalActivity extends AppCompatActivity {
             // this method would be called in the UI thread after doInBackground finishes
             // it can access the Views and update them asynchronously
             //https://stackoverflow.com/questions/1816458/getting-hold-of-the-outer-class-object-from-the-inner-class-object
-            editTxtGoalTitle.getText().clear();
+
             editTxtGoalDescription.getText().clear();
+            goalType = null;
         }
 
     }

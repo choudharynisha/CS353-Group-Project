@@ -8,6 +8,7 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.TextView;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -50,6 +51,12 @@ public class TrackMHActivity extends AppCompatActivity {
                 Objects.isNull(this.anxiety) && Objects.isNull(this.stress) &&
                 Objects.isNull(this.motivation)){
             Log.v(TAG, "All trackers are null, not sending anything to the Database");
+
+            Toast.makeText(
+                    getApplicationContext(),
+                    "please enter at least one value before submitting",
+                    Toast.LENGTH_LONG).show();
+
         }
         else {
             try {

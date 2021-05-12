@@ -102,10 +102,10 @@ public class WeeklyStatsActivity extends AppCompatActivity {
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
 
-        cartesian.title("Trend of Sales of the Most Popular Products of ACME Corp.");
+        cartesian.title("Mental Health Trackers");
 
-        cartesian.yAxis(0).title("Number of Bottles Sold (thousands)");
-        cartesian.xAxis(0).labels().padding(5d, 5d, 5d, 5d);
+        cartesian.yAxis(0).title("Scale 1 to 10");
+        cartesian.xAxis(0).title("Dates").labels();//.padding(5d, 5d, 5d, 5d);
 
         List<DataEntry> seriesData = new ArrayList<>();
 

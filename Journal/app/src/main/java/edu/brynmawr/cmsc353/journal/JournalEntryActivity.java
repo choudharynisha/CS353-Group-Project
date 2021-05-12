@@ -21,6 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class JournalEntryActivity extends AppCompatActivity {
@@ -44,7 +45,7 @@ public class JournalEntryActivity extends AppCompatActivity {
 
     protected JSONObject makeJournalEntry(String entry) {
         JSONObject journalEntry = new JSONObject();
-        LocalDate date = LocalDate.now();
+        LocalDateTime date = LocalDateTime.now();
 
         try {
             journalEntry.put("userID", userID);
@@ -168,6 +169,7 @@ public class JournalEntryActivity extends AppCompatActivity {
             // it can access the Views and update them asynchronously
             //https://stackoverflow.com/questions/1816458/getting-hold-of-the-outer-class-object-from-the-inner-class-object
             editTxtJournalEntry.getText().clear();
+
         }
 
     }

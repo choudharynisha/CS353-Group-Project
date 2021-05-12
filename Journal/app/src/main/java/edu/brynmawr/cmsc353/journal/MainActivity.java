@@ -84,4 +84,10 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("userID", this.userID);
         startActivityForResult(i, COUNTER_ACTIVITY_ID);
     }
+
+    public void onClickReturnLogin(View view) {
+        Intent i = new Intent();
+        setResult(RESULT_OK);
+        finish();
+    }
 }

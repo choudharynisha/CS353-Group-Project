@@ -86,6 +86,13 @@ public class CreateAccActivity extends AppCompatActivity {
         errorMsg.setVisibility(View.VISIBLE);
     }
 
+    public void onClickReturnLogin(View view) {
+        clearAll();
+        Intent i = new Intent();
+        setResult(RESULT_OK);
+        finish();
+    }
+
     private class CreateUser extends AsyncTask<URL, String, String> {
 
         @Override
@@ -213,4 +220,5 @@ public class CreateAccActivity extends AppCompatActivity {
         clearEditTexts();
         clearVars();
     }
+
 }
