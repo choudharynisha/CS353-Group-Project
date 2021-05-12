@@ -2,8 +2,8 @@
 <html lang = "en-US" dir = "ltr">
     <head>
         <title>Dashboard</title>
-        <script src = "https://cdn.anychart.com/releases/8.9.0/js/anychart-base.min.js" type = "text/javascript"></script>
-        <script src = "/Journal/viewJ.js" type = "text/javascript"></script>
+        <!-- <script src = "https://cdn.anychart.com/releases/8.9.0/js/anychart-base.min.js" type = "text/javascript"></script>
+        <script src = "/Journal/viewJ.js" type = "text/javascript"></script> -->
     
     <style>
         body{
@@ -48,8 +48,14 @@
 
         <h1 style="text-align: center;">Journals</h1>
         <br>
-        <div class="journ" style = "width: 700px; height: 300px; outline: solid ; outline-color:black"> <p id = "dayone"  >     </p></div>
-       <br>
+        <div class="journ" style = "width: 700px; height: 300px; outline: solid ; outline-color:black"> 
+            <p id = "dayone"  >  <%= test.date %></p> 
+            <br>
+            <br>
+               <p  style="text-align: center;"><%= test.journalEntry %></p>
+        </div>
+       
+        <br>
         <div  class="journ" id = "daytwo" style = "width: 700px; height: 300px; outline: solid ; outline-color: black"><p id = "daytwo" ></p></div>
         <br>
         <div  class="journ" id = "daythree" style = "width: 700px; height: 300px; outline: solid ; outline-color:black"></div>
@@ -65,3 +71,5 @@
         
     </body>
 </html>
+
+    

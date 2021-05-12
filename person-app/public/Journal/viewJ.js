@@ -59,7 +59,8 @@ for( let i= 0 ; i< toPrint.length; i++)
 
        console.log(toPrint[i]); 
        toPrint[i].entry = toPrint[i].entry.replaceAll('"',"");
-       document.getElementById("daytwo").innerText= toPrint[i].entry; 
+       toPrint[i].date = toPrint[i].date.replaceAll('"',"");
+       document.getElementById("dayone").innerHTML= toPrint[i].date + "<br>"+ toPrint[i].entry ; 
    }
 }
 

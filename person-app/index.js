@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 
+app.set('view engine', 'ejs');
 // set up BodyParser
 /*var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));*/
@@ -17,10 +18,15 @@ var Journal = require('./Journal.js');
 
 const path = require('path');
 
+
+
 //////////////////
+
 // navigate to health tracker
 app.use(express.static(path.join (__dirname,'/public/')));
 // app.use('/', (req, res) => { res.sendFile(path.join(__dirname, '/public/index.html')) } );
+
+app.use(express.static(path.join(__dirname,'/views/')));
 
 app.use(express.static(path.join(__dirname,'/tr')));
 
@@ -30,45 +36,55 @@ app.use(express.static(path.join(__dirname,'/Dashboard/visual.js')));
 app.post('/tracker', (req, res) => {
     res.sendFile(path.join(__dirname, '/tr/tracker.html'));
 });
-
+//create goals 
 app.post('/DailyGoals', (req, res) => {
     res.sendFile(path.join(__dirname, '/tr/goalCreator.html'));
 });
 
-app.post('/Dashboard', (req, res) =>{
 
-     // construct the query object
-     let queryObj = {};
+// retrieve goals and dalies 
+app.post('/Dashboard', (req, res) =>{
+    // construct the query object
+    let queryObj = {};
     
-     if(req.query.userID && req.query.date) {
-         queryObj = { 
-                     "userID" : req.query.userID,
-                     "date" : {$gte : req.query.date}
-                    };
-     }
-     
-     Daily.find(queryObj, (err, dailies) => {
-         if(err) {
-             console.log('Failure to retrieve the Daily/ies from the database: ' + err);
-             res.json({});
-         } 
-         else if(dailies.length == 0) {
-             console.log('No match found in Dailies');
-             res.json({});
-         } 
-         else {
-             // construct an array out of the result
-             let returnArray = [];
-             dailies.forEach( (daily) => {
-                 returnArray.push(daily);
-             });
-             // send it back as JSON Array
-             //res.json(returnArray); 
-         }
-     })
-    res.sendFile(path.join(__dirname, '/Dashboard/Dashboard.html'));
+    if(req.query.userID && req.query.date) {
+        queryObj = { 
+                "userID" : req.query.userID,
+                "date" : {$gte : req.query.date}
+               };
+    }
+
+    Daily.find(queryObj, (err, dailies) => 
+    {
+        if(err) {
+            console.log('Failure to retrieve the Daily/ies from the database: ' + err);
+            res.json([{"error" : "FailureToReturnDailies"}]);
+        } 
+        else if(dailies.length == 0) {
+            console.log('No match found in Dailies');
+            res.json([{"error" : "DailiesNotFound"}]);
+        } 
+        else 
+        {
+            // construct an array out of the result
+            let returnArray = [];
+            dailies.forEach( (daily) => 
+            {
+                returnArray.push(daily);
+            });
+            // send it back as JSON Array
+            console.log("Sending now");
+            // res.json(returnArray); 
+            res.cookie = ('user', returnArray); 
+            //res.sendFile(path.join(__dirname,'/public/Dashboard/dashboard.html')); 
+            res.render('daily_dashboard', {test :"help"});
+        }
+    })
 
 });
+
+    
+
 
 /// endpoints for web
 app.use('/createTrackerData', (req, res) => {
@@ -165,8 +181,11 @@ app.post('/viewjournals', (req, res) => {
             });
             //res.json = returnArray; 
             // send it back as JSON Array
-            res.cookie('user', returnArray);
-            res.sendFile(path.join(__dirname,'/public/Journal/viewJournals.html')); 
+
+            res.render('vJournals', {test :returnArray[0]});
+
+            //res.cookie('user', returnArray);
+            //res.sendFile(path.join(__dirname,'/public/Journal/viewJournals.html')); 
         }
     })
 
