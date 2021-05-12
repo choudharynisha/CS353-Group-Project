@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetGoalActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:backgroundTint="#D3A9A9"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="20dp">
+
+        <TextView
+            android:id="@+id/titleField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:freezesText="false"
+            android:gravity="center"
+            android:text="SET A GOAL"
+            android:textAllCaps="false"
+            android:textColor="#A9570D06"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="Goal Description"
+            android:textSize="20sp"
+            app:backgroundTint="#5A3C6A" />
+
+        <EditText
+            android:id="@+id/editTxtGoalDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:background="#EDDAE3"
+            android:gravity="top"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:lines="9"
+            android:paddingHorizontal="5dp"
+            android:paddingBottom="5dp"
+            android:scrollbars="vertical"
+            android:textColor="#7294a3"
+            android:textSize="20sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="Iteration"
+            android:textSize="20sp"
+            app:backgroundTint="#5A3C6A" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp">
+
+            <Button
+                android:id="@+id/dailyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="10dp"
+                app:backgroundTint="#d4c54b"
+                tools:ignore="ButtonStyle,HardcodedText"
+                android:text="   daily   "
+                android:textColor="#FFFF"
+                android:onClick="onClickDailyButton"
+                />
+
+            <Button
+                android:id="@+id/weeklyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:onClick="onclickWeeklyButton"
+                android:text="  weekly "
+                android:textColor="#FFFF"
+                app:backgroundTint="#6c9584"
+                tools:ignore="ButtonStyle,HardcodedText"/>
+
+            <Button
+                android:id="@+id/monthlyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:onClick="onclickMonthlyButton"
+                android:text="monthly"
+                android:textColor="#FFFF"
+                app:backgroundTint="#0566BC"
+                tools:ignore="ButtonStyle,HardcodedText"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="35dp">
+
+            <Button
+                android:id="@+id/returnMainButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:onClick="onClickReturnMain"
+                android:text="back"
+                android:textColor="#FFFF"
+                app:backgroundTint="#93984E"
+                tools:ignore="ButtonStyle,HardcodedText"/>
+
+            <Button
+                android:id="@+id/clearAllButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:onClick="onClickClearAll"
+                android:text="clear"
+                android:textColor="#FFFF"
+                app:backgroundTint="#B6839B"
+                tools:ignore="ButtonStyle,HardcodedText"/>
+
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="10dp"
+                app:backgroundTint="#4B59AE"
+                tools:ignore="ButtonStyle,HardcodedText"
+                android:text="submit"
+                android:textColor="#FFFF"
+                android:onClick="onClickSubmit"
+                />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

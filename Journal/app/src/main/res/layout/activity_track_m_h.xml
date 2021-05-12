@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TrackMHActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="20dp">
+
+        <TextView
+            android:id="@+id/titleField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="5dp"
+            android:freezesText="false"
+            android:gravity="center"
+            android:text="Mental Health Tracker"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText"/>
+
+
+        <TextView
+            android:id="@+id/energyField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:freezesText="false"
+            android:gravity="start"
+            android:text="                              Energy"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="23sp"
+            tools:ignore="HardcodedText"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="0dp">
+
+            <Button
+                android:id="@+id/energy1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#4559A3"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="energyButton1"/>
+
+            <Button
+                android:id="@+id/energy2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#5455a8"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="energyButton2"/>
+
+            <Button
+                android:id="@+id/energy3Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#724cb1"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="energyButton3"/>
+
+            <Button
+                android:id="@+id/energy4Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#8147b6"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="energyButton4"/>
+
+            <Button
+                android:id="@+id/energy5Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#9043bb"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="energyButton5"/>
+
+            <Button
+                android:id="@+id/energy6Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#af3ac5"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="energyButton6"/>
+
+            <Button
+                android:id="@+id/energy7Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#be36ca"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="energyButton7"/>
+
+            <Button
+                android:id="@+id/energy8Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#cd31ce"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="energyButton8"/>
+
+            <Button
+                android:id="@+id/energy9Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#dc2dd3"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="energyButton9"/>
+
+            <Button
+                android:id="@+id/energy10Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#FA24DD"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="energyButton10"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:freezesText="false"
+            android:gravity="start"
+            android:text=" 1         2        3        4        5        6        7        8        9       10"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="15sp"
+            tools:ignore="HardcodedText"/>
+
+
+        <TextView
+            android:id="@+id/depressionField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:freezesText="false"
+            android:gravity="start"
+            android:text="                          Depression"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="23sp"
+            tools:ignore="HardcodedText"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="0dp">
+
+            <Button
+                android:id="@+id/dep1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#FDD835"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="depButton1"/>
+
+            <Button
+                android:id="@+id/dep2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#e8ce40"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="depButton2"/>
+
+            <Button
+                android:id="@+id/dep3Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#d4c54b"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="depButton3"/>
+
+            <Button
+                android:id="@+id/dep4Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#aab262"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="depButton4"/>
+
+            <Button
+                android:id="@+id/dep5Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#96a86d"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="depButton5"/>
+
+            <Button
+                android:id="@+id/dep6Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#6c9584"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="depButton6"/>
+
+            <Button
+                android:id="@+id/dep7Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#588c8f"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="depButton7"/>
+
+            <Button
+                android:id="@+id/dep8Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#43829a"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="depButton8"/>
+
+            <Button
+                android:id="@+id/dep9Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#2e79a5"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="depButton9"/>
+
+            <Button
+                android:id="@+id/dep10Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#0566BC"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="depButton10"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:freezesText="false"
+            android:gravity="start"
+            android:text=" 1         2        3        4        5        6        7        8        9       10"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="15sp"
+            tools:ignore="HardcodedText"/>
+
+
+        <TextView
+            android:id="@+id/anxietyField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:freezesText="false"
+            android:gravity="start"
+            android:text="                              Anxiety"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="23sp"
+            tools:ignore="HardcodedText"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="0dp">
+
+            <Button
+                android:id="@+id/anx1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#5DBCB2"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="anxButton1"/>
+
+            <Button
+                android:id="@+id/anx2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#55c588"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="anxButton2"/>
+
+            <Button
+                android:id="@+id/anx3Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#83a18d"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="anxButton3"/>
+
+            <Button
+                android:id="@+id/anx4Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#8f9881"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="anxButton4"/>
+
+            <Button
+                android:id="@+id/anx5Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#9c8f74"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="anxButton5"/>
+
+            <Button
+                android:id="@+id/anx6Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#b57e5c "
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="anxButton6"/>
+
+            <Button
+                android:id="@+id/anx7Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#c2754f"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="anxButton7"/>
+
+            <Button
+                android:id="@+id/anx8Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#ce6c43 "
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="anxButton8"/>
+
+            <Button
+                android:id="@+id/anx9Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#db6337"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="anxButton9"/>
+
+            <Button
+                android:id="@+id/anx10Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#F4511E"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="anxButton10"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:freezesText="false"
+            android:gravity="start"
+            android:text=" 1         2        3        4        5        6        7        8        9       10"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="15sp"
+            tools:ignore="HardcodedText" />
+
+
+        <TextView
+            android:id="@+id/stressField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:freezesText="false"
+            android:gravity="start"
+            android:text="                              Stress"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="23sp"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="0dp">
+
+            <Button
+                android:id="@+id/stress1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#529A56"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="stressButton1"/>
+
+            <Button
+                android:id="@+id/stress2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#698155"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="stressButton2"/>
+
+            <Button
+                android:id="@+id/stress3Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#757455"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="stressButton3"/>
+
+            <Button
+                android:id="@+id/stress4Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#806855"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="stressButton4"/>
+
+            <Button
+                android:id="@+id/stress5Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#8c5b55"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="stressButton5"/>
+
+            <Button
+                android:id="@+id/stress6Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#a34254"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="stressButton6"/>
+
+            <Button
+                android:id="@+id/stress7Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#af3554"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="stressButton7"/>
+
+            <Button
+                android:id="@+id/stress8Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#ba2954"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="stressButton8"/>
+
+            <Button
+                android:id="@+id/stress9Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#c61c54"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="stressButton9"/>
+
+            <Button
+                android:id="@+id/stress10Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#DD0353"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="stressButton10"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:freezesText="false"
+            android:gravity="start"
+            android:text=" 1         2        3        4        5        6        7        8        9       10"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="15sp"
+            tools:ignore="HardcodedText"/>
+
+
+        <TextView
+            android:id="@+id/motivationField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:freezesText="false"
+            android:gravity="start"
+            android:text="                           Motivation"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="23sp"
+            tools:ignore="HardcodedText"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="0dp">
+
+            <Button
+                android:id="@+id/mot1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColorHighlight="#3949AB"
+                app:backgroundTint="#795F87"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="motButton1"/>
+
+            <Button
+                android:id="@+id/mot2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#757a95"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="motButton2"/>
+
+            <Button
+                android:id="@+id/mot3Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#74879c"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="motButton3"/>
+
+            <Button
+                android:id="@+id/mot4Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#7294a3"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="motButton4"/>
+
+            <Button
+                android:id="@+id/mot5Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#70a2aa"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="motButton5"/>
+
+            <Button
+                android:id="@+id/mot6Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#6dbcb7"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="motButton6"/>
+
+            <Button
+                android:id="@+id/mot7Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#6bcabe"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="motButton7"/>
+
+            <Button
+                android:id="@+id/mot8Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#69d7c5"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="motButton8"/>
+
+            <Button
+                android:id="@+id/mot9Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#68e4cc"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="motButton9"/>
+
+            <Button
+                android:id="@+id/mot10Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="#64FFDA"
+                app:cornerRadius="@dimen/cardview_compat_inset_shadow"
+                tools:ignore="ButtonStyle"
+                android:onClick="motButton10"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:freezesText="false"
+            android:gravity="start"
+            android:text=" 1         2        3        4        5        6        7        8        9       10"
+            android:textAllCaps="false"
+            android:textColor="#B6839B"
+            android:textSize="15sp"
+            tools:ignore="HardcodedText"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/returnMainButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:onClick="onclickReturnMain"
+            android:text="back"
+            android:textColor="#EDDAE3"
+            app:backgroundTint="#93984E"
+            tools:ignore="ButtonStyle,HardcodedText"/>
+
+        <Button
+            android:id="@+id/clearAllButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:onClick="onclickClearAll"
+            android:text="clear"
+            android:textColor="#EDDAE3"
+            app:backgroundTint="#B6839B"
+            tools:ignore="ButtonStyle,HardcodedText"/>
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            app:backgroundTint="#4B59AE"
+            tools:ignore="ButtonStyle,HardcodedText"
+            android:text="submit"
+            android:textColor="#EDDAE3"
+            android:onClick="onclickSubmit"
+            />
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
