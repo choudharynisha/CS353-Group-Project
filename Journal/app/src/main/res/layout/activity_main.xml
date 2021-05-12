@@ -6,110 +6,130 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:backgroundTint="#D3A9A9"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="20dp">
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="0dp">
-
-        <TextView
-            android:id="@+id/titleField"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:freezesText="false"
-            android:gravity="end"
-            android:text="Menu"
-            android:textAllCaps="false"
-            android:textColor="#9C0309"
-            android:textSize="50dp"
-            android:onClick="onClickLaunchGoalSet"
-            tools:ignore="HardcodedText"
-            android:layout_weight="1"/>
+            android:background="#FFFFFF"
+            android:backgroundTint="#D3A9A9"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/returnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:onClick="onClickReturnLogin"
-            android:text="Logout"
-            android:textSize="15dp"
-            app:backgroundTint="#973337"
-            tools:ignore="HardcodedText"
-            android:layout_weight="2"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="0dp"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/titleField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:freezesText="false"
+                    android:gravity="end"
+                    android:onClick="onClickLaunchGoalSet"
+                    android:text="Menu"
+                    android:textAllCaps="false"
+                    android:textColor="#9C0309"
+                    android:textSize="50dp"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/returnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:onClick="onClickReturnLogin"
+                    android:text="Logout"
+                    android:textSize="15dp"
+                    app:backgroundTint="#973337"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
 
 
-        <Button android:id="@+id/launchMHTracker"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:text="Mental Health\nTracker"
-            android:textSize="23dp"
-            app:backgroundTint="#4B59AE"
-            android:onClick="onClickLaunchMHT"
-            tools:ignore="HardcodedText"/>
+            <Button
+                android:id="@+id/launchMHTracker"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:onClick="onClickLaunchMHT"
+                android:text="Mental Health\nTracker"
+                android:textSize="23dp"
+                app:backgroundTint="#4B59AE"
+                tools:ignore="HardcodedText" />
 
-        <Button android:id="@+id/launchJournal"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:onClick="onClickLaunchAddJournal"
-            android:text="Add Journal\nEntry"
-            android:textSize="23dp"
-            app:backgroundTint="#93984E"
-            tools:ignore="HardcodedText"/>
+            <Button
+                android:id="@+id/launchJournal"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:onClick="onClickLaunchAddJournal"
+                android:text="Add Journal\nEntry"
+                android:textSize="23dp"
+                app:backgroundTint="#93984E"
+                tools:ignore="HardcodedText" />
 
-        <Button android:id="@+id/launchGoals"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:onClick="onClickLaunchGoalSet"
-            android:text="Set Specific Goals"
-            android:textSize="23dp"
-            app:backgroundTint="#B6839B"
-            tools:ignore="HardcodedText"/>
+            <Button
+                android:id="@+id/launchGoals"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:onClick="onClickLaunchGoalSet"
+                android:text="Set Specific Goals"
+                android:textSize="23dp"
+                app:backgroundTint="#B6839B"
+                tools:ignore="HardcodedText" />
 
-        <Button
-            android:id="@+id/launchDashboard"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:onClick="onClickLaunchDashboard"
-            android:text="Dashboard"
-            android:textSize="23dp"
-            app:backgroundTint="#558580"
-            tools:ignore="HardcodedText" />
+            <Button
+                android:id="@+id/launchDashboard"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:onClick="onClickLaunchDashboard"
+                android:text="Dashboard"
+                android:textSize="23dp"
+                app:backgroundTint="#558580"
+                tools:ignore="HardcodedText" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/launchWeeklyJournals"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:onClick="onClickLaunchWeeklyJournal"
+                android:text="View Weekly Journal"
+                android:textSize="23dp"
+                app:backgroundTint="#DBA842"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

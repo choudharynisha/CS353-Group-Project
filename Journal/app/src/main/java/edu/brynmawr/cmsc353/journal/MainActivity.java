@@ -90,4 +90,10 @@ public class MainActivity extends AppCompatActivity {
         setResult(RESULT_OK);
         finish();
     }
+
+    public void onClickLaunchWeeklyJournal(View view) {
+        Intent i = new Intent(this, WeeklyJournalActivity.class);
+        i.putExtra("userID", this.userID);
+        startActivity(i);
+    }
 }

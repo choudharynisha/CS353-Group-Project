@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Journal">
-        <activity android:name=".CreateAccActivity"></activity>
+        <activity android:name=".WeeklyJournalActivity"></activity>
+        <activity android:name=".CreateAccActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".WeeklyStatsActivity" />
         <activity android:name=".JournalEntryActivity" />
