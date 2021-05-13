@@ -141,7 +141,7 @@ public class JournalEntryActivity extends AppCompatActivity {
                 if (responsecode != 200) {
                     String errorCode = "Problem writing to the Database: " + responsecode;
                     System.out.println(errorCode);
-                    return errorCode;
+                    return "error";
                 }
                 else {
 
@@ -159,18 +159,21 @@ public class JournalEntryActivity extends AppCompatActivity {
             }
             catch (Exception e) {
                 e.printStackTrace();
-                return e.toString();
+                return "error";
             }
 
         }
 
         @Override
         protected void onPostExecute(String s) {
-            // this method would be called in the UI thread after doInBackground finishes
-            // it can access the Views and update them asynchronously
-            //https://stackoverflow.com/questions/1816458/getting-hold-of-the-outer-class-object-from-the-inner-class-object
-            editTxtJournalEntry.getText().clear();
-            Toast toast = Toast.makeText(JournalEntryActivity.this, "Entry Submitted.", Toast.LENGTH_LONG);
+            Toast toast;
+
+            if (s.equals("error")) {
+                toast = Toast.makeText(JournalEntryActivity.this, "Unable to Submit.", Toast.LENGTH_SHORT);
+            } else {
+                editTxtJournalEntry.getText().clear();
+                toast = Toast.makeText(JournalEntryActivity.this, "Submitted Successfully.", Toast.LENGTH_SHORT);
+            }
             toast.show();
         }
 

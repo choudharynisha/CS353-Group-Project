@@ -60,7 +60,7 @@ public class WeeklyJournalActivity extends AppCompatActivity {
         List<String> dates = new ArrayList<>();
         List<String> entries = new ArrayList<>();
 
-        for (int i = 0; i < journalEntries.length(); i++) {
+        for (int i = journalEntries.length() - 1; i >= 0; i--) {
             try {
                 JSONObject journalObject = journalEntries.getJSONObject(i);
 
