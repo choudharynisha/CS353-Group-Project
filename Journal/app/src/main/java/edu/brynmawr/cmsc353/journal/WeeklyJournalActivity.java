@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -53,6 +54,10 @@ public class WeeklyJournalActivity extends AppCompatActivity {
         URL[] urls = {url};
 
         AsyncTask<URL, String, String> getJournals = new WeeklyJournalActivity.AccessWebTask().execute(urls);
+    }
+
+    public void onClickReturnMain(View view) {
+        finish();
     }
 
     protected void populateJournalsList(JSONArray journalEntries) {
