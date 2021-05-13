@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -85,6 +86,9 @@ public class JournalEntryActivity extends AppCompatActivity {
         else
         {
             Log.v(TAG, "Text field empty or null. Abort submission.");
+
+            Toast toast = Toast.makeText(JournalEntryActivity.this, "Can't Submit Empty Journal.", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 
@@ -117,9 +121,6 @@ public class JournalEntryActivity extends AppCompatActivity {
 
 
                 // this is the JSON that you want to send
-                // note that you need double-quotes around strings
-                // and need to escape those double-quotes with the backslash character
-                //String json = "{\"username\":\"root\",\"password\":\"password\"}";
                 String json = entry.toString();
 
                 Log.v(TAG, json);
@@ -169,7 +170,8 @@ public class JournalEntryActivity extends AppCompatActivity {
             // it can access the Views and update them asynchronously
             //https://stackoverflow.com/questions/1816458/getting-hold-of-the-outer-class-object-from-the-inner-class-object
             editTxtJournalEntry.getText().clear();
-
+            Toast toast = Toast.makeText(JournalEntryActivity.this, "Entry Submitted.", Toast.LENGTH_LONG);
+            toast.show();
         }
 
     }
