@@ -19,17 +19,17 @@
         <br /><br />
         <div id = "container" style = "width: 500px; height: 400px;"></div>
         <br /><br />
-       <p style="color: black;">
+       <!-- <p style="color: black;">
     
 
-        <%  let date = [0];
+      <%  let date = [0];
             let tra = [0];
             let list =[];
             
           for( let i =0; i< test[0].length; i++){ %> 
-           <% date = [test[0][i].date ];
-                 tra.push(test[0][i].trackers); %>
-                 <p><%= test[0][i].trackers %></p>
+           <% date = [test[0][i] ];
+                  %>
+                 <p><%= date %></p>
 
                <% list.push(date);
                  %> <% } 
@@ -37,7 +37,7 @@
           %>
 
                 
-        </p>
+        </p> -->
 
         <br>
         <br>
@@ -79,44 +79,112 @@
              </ul>
         </div>
 
-        <script>
-            let currentUser = '"1234"'; 
-            var tracker =  "<%= tra %>"; 
-            var nt = tracker.valueOf(); 
-            var dates = "<%= list %>"; 
 
-            console.log(nt);
+
+
+        <script>
+            // let currentUser = '"1234"'; 
+             var temptracker =  "<%= test[0] %>"; 
+             
+             //console.log(temptracker);
+
+            
+           
+            
+
+            
+             let tracker = temptracker.split('*'); 
+
+
+             let data =[];
+            //console.log(tracker[0]); 
+
+            for (var i = 0 ; i < tracker.length; i += 6)
+            {
+                //tracker[i].replaceAll(" ", ""); 
+                var tempdata =tracker[i].split(',');
+                
+                // if(tempdata[1])
+                // {
+                //         var da = Date.parse(tempdata[1]); 
+                //         tempdata[1] = da.getUTCDate();  
+                // }
+                // else
+                // {
+                    
+                // }
+
+                //console.log(tempdata);
+
+                data.push(tempdata);
+            }
+             console.log(data);
+
+            // for(let i = 0; i < tracker.length; i++)
+            // {
+            //     if(tracker[i] === '' || tracker[i] === 'null')
+            //     {
+            //         tracker[i] = 11; 
+            //     }
+            //     else if (Number.isInteger(tracker[i].valueOf) ) 
+            //     {
+            //         let tempnum = tracker[i]; 
+            //         tracker[i] = parseInt(tempnum); 
+            //     }
+            // }
+            // console.log(tracker); 
+            // console.log(nt);
 
             // console.log(nt); 
             // let tem = tracker.split(']'); 
             // console.log(tem); 
-        anychart.onDocumentReady(function () {
-            anychart.onDocumentReady(function () {
-                var chart = anychart.line();
+       //anychart.onDocumentReady(function () {
+         anychart.onDocumentReady(function () {
+                 var chart = anychart.line();
                 
-                var depression = chart.line([
-                    {x: tracker[0], value: tracker[0].depression},
-                    {x: tracker[1], value: tracker[1].depression},
+                    //  var energy = chart.line([
+                    // {x: "day one", value: tracker[0]},
+                    // {x: "day two", value: tracker[5]},
                     
-                ]);
-                
-                // var series2 = chart.line([
-                //     {x: 'Cycling', value: 35},
-                //     {x: 'Swimming', value: 23},
-                //     {x: 'Run', value: 14},
-                //     {x: 'Hiking', value: 50}
                 // ]);
+                // var depression = chart.line([
+                //     {x: "day one", value: tracker[1]},
+                //     {x: "day two", value: tracker[6]},
+                    
+        //         ]);
+        //         var anxiety = chart.line([
+        //             {x: "day one", value: tracker[2]},
+        //             {x: "day two", value: tracker[7]},
+                    
+        //         ]);
+        //         var stress = chart.line([
+        //             {x: "day one", value: tracker[3]},
+        //             {x: "day two", value: tracker[8]},
+                    
+        //         ]);
+        //         var motivation = chart.line([
+        //             {x: "day one", value: tracker[4]},
+        //             {x: "day two", value: tracker[9]},
+                    
+        //         ]);
                 
-                // // Get Z-Index of the line series.
-                // var zIndex = series2.zIndex();
+        //         // var series2 = chart.line([
+        //         //     {x: 'Cycling', value: 35},
+        //         //     {x: 'Swimming', value: 23},
+        //         //     {x: 'Run', value: 14},
+        //         //     {x: 'Hiking', value: 50}
+        //         // ]);
+                
+        //         // // Get Z-Index of the line series.
+        //         // var zIndex = series2.zIndex();
                 
                 chart.title('Tracker data ');
                 
                 chart.container('container');
                 chart.draw();
-            });
+         });
 
-        });
+        // });
          </script>
         
       

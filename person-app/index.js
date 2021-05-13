@@ -86,32 +86,70 @@ app.post('/Dashboard', (req, res) =>{
             
             for(let i =0; i < returnArray.length; i++)
             {
+                let tempvalues =[]; 
+                let  tem = returnArray[i].trackers; 
                 
                 // if( returnArray[i].hasOwnProperty(returnArray[i].trackers) )
                 //  {
-                    let tempvalues =[]; 
-                    let  tem = returnArray[i].trackers; 
-                    // console.log(tem); 
+                    if( i === 0)
+                    {
+                        tempvalues.push(" ") ;
+                    }
+                  
+                    // console.log(returnArray[i].date.toLocaleDateString()); 
+                    tempvalues.push(returnArray[i].date) ;
                     for(item in returnArray[i].trackers)
                     {
+                        var fillin =0; 
                         if(item === 'energy')
                         {
-                            tempvalues.push(returnArray[i].trackers.energy)
+                            tempvalues.push( item + " " + returnArray[i].trackers.energy); 
+                            fillin = fillin +1; 
                         }
-                        else if(item === 'energy')
+                        else if(item === 'depression')
                         {
-                            tempvalues.push(returnArray[i].trackers.energy)
+                            tempvalues.push(item + " " + returnArray[i].trackers.depression);
+                            fillin = fillin +1; 
                         }
+                        else if(item === 'anxiety')
+                        {
+                            tempvalues.push(item + " " + returnArray[i].trackers.anxiety);
+                            fillin = fillin +1; 
+                        }
+                        else if(item === 'stress')
+                        {
+                            tempvalues.push(item + " " + returnArray[i].trackers.stress);
+                            fillin = fillin +1; 
+                        }
+                        else if(item === 'motivation')
+                        {
+                            tempvalues.push( item + " " + returnArray[i].trackers.motivation);
+                            fillin = fillin +1; 
+                        }
+                        else
+                        {
+                            tempvalues.push(item); 
+                            fillin = fillin +1; 
+                        }
+                        if(fillin === 0)
+                        {
+                            tempvalues.push(item)
+                        }
+
+                         
+                       
                         
                     }
-                    console.log(tempvalues); 
-
+                    tempvalues.push('*');
+                    //console.log(tempvalues); 
+                   values.push(tempvalues); 
                 // }
 
             }
+            // console.log(values); 
 
             
-            data[0]= returnArray; 
+            data[0]= values; 
             //res.clearCookie('user'); 
             
            // res.cookie = ('user', returnArray); 
