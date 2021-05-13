@@ -1,11 +1,14 @@
 package edu.brynmawr.cmsc353.journal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -15,7 +18,6 @@ import com.anychart.charts.Cartesian;
 import com.anychart.core.cartesian.series.Line;
 import com.anychart.data.Mapping;
 import com.anychart.data.Set;
-import com.anychart.data.View;
 import com.anychart.enums.Anchor;
 import com.anychart.enums.MarkerType;
 import com.anychart.enums.TooltipPositionMode;
@@ -32,10 +34,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import edu.brynmawr.cmsc353.journal.adapters.GoalsAdapter;
+import edu.brynmawr.cmsc353.journal.adapters.JournalEntryAdapter;
 
 
 public class WeeklyStatsActivity extends AppCompatActivity {
@@ -52,23 +56,27 @@ public class WeeklyStatsActivity extends AppCompatActivity {
             this.userID = getIntent().getStringExtra("userID");
         }
 
-        this.userID = "12345";
-
         LocalDate date = LocalDate.now().minusDays(7);
 
-        URL url = null;
+        URL dailiesUrl = null;
+        URL goalsUrl = null;
 
         try {
-            url = new URL("http://10.0.2.2:3000/getDailies?userID=" + userID + "&date=" + date.toString());
+            dailiesUrl = new URL("http://10.0.2.2:3000/getDailies?userID=" + userID + "&date=" + date.toString());
+            goalsUrl = new URL("http://10.0.2.2:3000/getGoals?userID=" + userID + "&date=" + date.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
-        Log.v("url", url.toString());
+        Log.v("url", dailiesUrl.toString());
 
-        URL[] urls = {url};
+        URL[] urls = {dailiesUrl};
 
-        AsyncTask<URL, String, String> getDailies = new AccessWebTask().execute(urls);
+        AsyncTask<URL, String, String> getDailies = new RetrieveDailiesTask().execute(urls);
+
+
+        urls = new URL[]{goalsUrl};
+        AsyncTask<URL, String, String> getGoals = new RetrieveGoalsTask().execute(urls);
 
     }
 
@@ -237,7 +245,43 @@ public class WeeklyStatsActivity extends AppCompatActivity {
 
     }
 
-    private class AccessWebTask extends AsyncTask<URL, String, String> {
+    protected void populateGoalsList(JSONArray goals) {
+        List<String> types = new ArrayList<>();
+        List<String> descriptions = new ArrayList<>();
+
+        for (int i = 0; i < goals.length(); i++) {
+            try {
+                JSONObject goalObject = goals.getJSONObject(i);
+
+                if (goalObject.has("type")) {
+                    types.add((String) goalObject.get("type"));
+                } else {
+                    Log.w(TAG, "Journal Object has no type!");
+                    continue;
+                }
+
+                if (goalObject.has("description")) {
+                    descriptions.add((String) goalObject.get("description"));
+                } else {
+                    Log.w(TAG, "Journal Object has no description!");
+                    continue;
+                }
+            } catch (JSONException e) {
+                Log.e(TAG,"There was a problem processing the journal data!");
+                e.printStackTrace();
+            }
+        }
+
+        RecyclerView recyclerView = findViewById(R.id.rvGoals);
+
+        GoalsAdapter goalsAdapter = new GoalsAdapter(types, descriptions);
+
+        recyclerView.setAdapter(goalsAdapter);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private class RetrieveDailiesTask extends AsyncTask<URL, String, String> {
 
         @Override
         protected String doInBackground(URL... urls) {
@@ -309,6 +353,79 @@ public class WeeklyStatsActivity extends AppCompatActivity {
                     //LoginActivity.this.clearAll();
                 } else {
                     WeeklyStatsActivity.this.createGraph(arr);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    private class RetrieveGoalsTask extends AsyncTask<URL, String, String> {
+
+        @Override
+        protected String doInBackground(URL... urls) {
+            try {
+                URL url = urls[0];
+
+                //represents the connection to the URL
+                Log.v(TAG, url.toString());
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestMethod("GET");
+
+                conn.connect();
+
+                // now the response comes back
+                int responsecode = conn.getResponseCode();
+
+                // make sure the response has "200 OK" as the status
+                if (responsecode != 200) {
+                    String errorCode = "Problem writing to the Database: " + responsecode;
+                    Log.v(TAG, errorCode);
+                    return "FailureToConnectToServer";
+                } else {
+                    try (BufferedReader br = new BufferedReader(
+                            new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+                        StringBuilder response = new StringBuilder();
+                        String responseLine = null;
+                        while ((responseLine = br.readLine()) != null) {
+                            response.append(responseLine.trim());
+                        }
+                        Log.v(TAG, response.toString());
+                        conn.disconnect();
+                        return response.toString();
+                    }
+                }
+            } catch (java.net.ConnectException e) {
+                e.printStackTrace();
+                return "FailureToConnectToServer";
+            } catch (Exception e) {
+                e.printStackTrace();
+                return e.toString();
+            }
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Log.v(TAG, s);
+
+            //Need to print appropriate error
+            if (s.equals("FailureToConnectToServer")) {
+                //WeeklyStatsActivity.this.showError("connection failure, please try again later");
+                //WeeklyStatsActivity.this.clearAll();
+            }
+            try {
+                JSONArray arr = new JSONArray(s);
+
+                if (arr.length() > 0) {
+                    populateGoalsList(arr);
+                } else {
+                    TextView goalsHeader = findViewById(R.id.txtGoalsHeader);
+                    goalsHeader.setText("Goals: There are no Goals to Show.");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
