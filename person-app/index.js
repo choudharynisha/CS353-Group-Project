@@ -262,15 +262,16 @@ app.get('/getJournals', (req, res) => {
     Journal.find(queryObj, (err, journals) => {
         if(err) {
             console.log('Failure to retrieve the Journal/s from the database: ' + err);
-            res.json({});
+            res.json([]);
         } else if(journals.length == 0) {
             console.log('No match found in Journals');
-            res.json({});
+            res.json([]);
         } else {
             // construct an array out of the result
             let returnArray = [];
-            journals.forEach( (daily) => {
-                returnArray.push(daily);
+            journals.forEach( (journal) => {
+                console.log(journal);
+                returnArray.push(journal);
             });
             // send it back as JSON Array
             res.json(returnArray); 
@@ -282,17 +283,17 @@ app.use('/getGoals', (req, res) => {
     // construct the query object
     let queryObj = {};
     
-    if(req.body.userID) {
-        queryObj = { "userID" : req.body.userID};
+    if(req.query.userID) {
+        queryObj = { "userID" : req.query.userID};
     }
     
     Goal.find(queryObj, (err, goals) => {
         if(err) {
             console.log('Failure to retrieve the Goal(s) from the database: ' + err);
-            res.json({});
+            res.json([]);
         } else if(goals.length == 0) {
             console.log('No match found in Goals');
-            res.json({});
+            res.json([]);
         } else {
             // construct an array out of the result
             let returnArray = [];
