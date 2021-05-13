@@ -16,34 +16,98 @@
         <br>
         <br>
         <div id = "container" style = "width: 500px; height: 400px;"></div>
+       <br>
+       <br>
+       <p style="color: black;">
+    
+
+        <%  let date = [0];
+            let tra = [0];
+            let list =[];
+          for( let i =0; i< test[0].length; i++){%> 
+            <p><% date = [test[0][i].date ];
+                 tra.push(test[0][i].trackers);
+                list.push(date);
+                 %></p> <% }
+                
+                
+                %>
+
+                
+        </p>
+
+        <br>
+        <br>
+
+        <div id="dailygoals" style = " width: 500px; height: 400px; background-color: aliceblue; ">
+            <br>
+            <h3 style="text-align: center;">Daily Goals</h3>
+      
+            <ul style="color: black; text-align: center;"> 
+                <% for( let i =0; i< test[1].length; i++){ %> 
+                    <%if( test[1][i].type === 'daily'){ %>
+                    <p><%= test[1][i].description %></p> <% } }%>
+                    
+             </ul>
+        </div>
+
+        <div id="weeklygoals" style = " width: 500px; height: 400px; background-color: aliceblue; ">
+            <br>
+            <h3 style="text-align: center;">Weekly Goals</h3>
+      
+            <ul style="color: black; text-align: center;"> 
+                <% for( let i =0; i< test[1].length; i++){%> 
+                    <%if( test[1][i].type === 'weekly'){ %>
+                    <p><%= test[1][i].description %></p> <%} }%>
+        
+             </ul>
+        </div>
        
-        <br>
-        <br>
-         <p style="color: black;"> <% console.log(test) %></p>
+        
+        <div id="monthlygoals" style = " width: 500px; height: 400px; background-color: aliceblue; ">
+            <br>
+            <h3 style="text-align: center;">Monthly Goals</h3>
+      
+            <ul style="color: black; text-align: center;"> 
+                <% for( let i =0; i< test[1].length; i++){%> 
+                    <%if( test[1][i].type === 'monthly'){ %>
+                    <p><%= test[1][i].description %></p> <%  } }%>
+        
+             </ul>
+        </div>
 
         <script>
+            let currentUser = '"1234"'; 
+            var tracker =  "<%= tra %>"; 
+            var nt = tracker.valueOf(); 
+            var dates = "<%= list %>"; 
+
+            console.log(nt);
+
+            // console.log(nt); 
+            // let tem = tracker.split(']'); 
+            // console.log(tem); 
         anychart.onDocumentReady(function () {
             anychart.onDocumentReady(function () {
                 var chart = anychart.line();
                 
-                var series1 = chart.line([
-                    {x: 'Cycling', value: 18},
-                    {x: 'Swimming', value: 25},
-                    {x: 'Run', value: 10},
-                    {x: 'Hiking', value: 20}
+                var depression = chart.line([
+                    {x: tracker[0], value: tracker[0].depression},
+                    {x: tracker[1], value: tracker[1].depression},
+                    
                 ]);
                 
-                var series2 = chart.line([
-                    {x: 'Cycling', value: 35},
-                    {x: 'Swimming', value: 23},
-                    {x: 'Run', value: 14},
-                    {x: 'Hiking', value: 50}
-                ]);
+                // var series2 = chart.line([
+                //     {x: 'Cycling', value: 35},
+                //     {x: 'Swimming', value: 23},
+                //     {x: 'Run', value: 14},
+                //     {x: 'Hiking', value: 50}
+                // ]);
                 
-                // Get Z-Index of the line series.
-                var zIndex = series2.zIndex();
+                // // Get Z-Index of the line series.
+                // var zIndex = series2.zIndex();
                 
-                chart.title('Z-Index of the series is ' + zIndex);
+                chart.title('Tracker data ');
                 
                 chart.container('container');
                 chart.draw();

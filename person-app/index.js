@@ -46,7 +46,9 @@ app.post('/DailyGoals', (req, res) => {
 app.post('/Dashboard', (req, res) =>{
     // construct the query object
     let queryObj = {};
-    
+
+    let data = [null,null];
+   
     if(req.query.userID && req.query.date) {
         queryObj = { 
                 "userID" : req.query.userID,
@@ -70,16 +72,62 @@ app.post('/Dashboard', (req, res) =>{
             let returnArray = [];
             dailies.forEach( (daily) => 
             {
-                returnArray.push(daily);
+                
+                    returnArray.push(daily);
+              
             });
             // send it back as JSON Array
             console.log("Sending now");
             // res.json(returnArray); 
-            res.cookie = ('user', returnArray); 
+            //console.log(returnArray);
+            
+            data[0]= returnArray; 
+            //res.clearCookie('user'); 
+            
+           // res.cookie = ('user', returnArray); 
+            
             //res.sendFile(path.join(__dirname,'/public/Dashboard/dashboard.html')); 
-            res.render('daily_dashboard', {test :"help"});
+            // res.render('daily_dashboard', {test : returnArray});
         }
     })
+
+    // get goals 
+    if(req.body.userID) {
+        queryObj = { "userID" : req.body.userID};
+    }
+    
+    Goal.find(queryObj, (err, goals) => {
+        if(err) {
+            console.log('Failure to retrieve the Goal(s) from the database: ' + err);
+            res.json({});
+        } else if(goals.length == 0) {
+            console.log('No match found in Goals');
+            res.json({});
+        } 
+        else 
+        {
+            // construct an array out of the result
+            let returnArray = [];
+            goals.forEach( (goal) => {
+                // only showing Daily goals
+                  
+                    //console.log(goal); 
+                    returnArray.push(goal);
+                  
+               
+            });
+            // send it back as JSON Array
+            //res.json(returnArray);
+            // console.log(returnArray); 
+            //data.push(returnArray)
+            // res.cookie = ('user', returnArray); 
+            data[1]= returnArray; 
+            //console.log(data); 
+            res.render('daily_dashboard', {test : data});
+        }
+    })
+
+
 
 });
 
@@ -184,6 +232,7 @@ app.post('/viewjournals', (req, res) => {
 
             res.render('vJournals', {test :returnArray[0]});
 
+            //res.clearCookie
             //res.cookie('user', returnArray);
             //res.sendFile(path.join(__dirname,'/public/Journal/viewJournals.html')); 
         }
