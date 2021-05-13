@@ -24,14 +24,13 @@
         <%  let date = [0];
             let tra = [0];
             let list =[];
-          for( let i =0; i< test[0].length; i++){%> 
-            <p><% date = [test[0][i].date ];
-                 tra.push(test[0][i].trackers);
-                list.push(date);
-                 %></p> <% }
-                
-                
-                %>
+          for( let i =0; i< test[0].length; i++){ %> 
+           <% date = [test[0][i].date ];
+                 tra.push(test[0][i].trackers); %>
+                 <p><%= test[0][i].trackers %></p>
+
+               <% list.push(date);
+                 %> <% } %>
 
                 
         </p>

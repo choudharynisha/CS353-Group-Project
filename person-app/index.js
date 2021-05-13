@@ -230,7 +230,7 @@ app.post('/viewjournals', (req, res) => {
             //res.json = returnArray; 
             // send it back as JSON Array
 
-            res.render('vJournals', {test :returnArray[0]});
+            res.render('vJournals', {test :returnArray});
 
             //res.clearCookie
             //res.cookie('user', returnArray);
