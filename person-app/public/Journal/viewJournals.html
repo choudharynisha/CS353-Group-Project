@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang = "en-US" dir = "ltr">
+    <head>
+        <title>Dashboard</title>
+        <script src = "https://cdn.anychart.com/releases/8.9.0/js/anychart-base.min.js" type = "text/javascript"></script>
+        <script src = "/Journal/viewJ.js" type = "text/javascript"></script>
+    
+    <style>
+        body{
+            background-color:#82CAAF;
+        }
+        .journ{
+            background-color: #194A8D;
+         
+            display: flex;
+           color: white;
+           text-align: center;
+            margin-right: auto; 
+            margin-left: auto;
+            
+            
+        }
+        .button{
+            background-color: #194A8D; 
+            color: white;
+            width: 60px; 
+            height: 50px;
+        }
+        .button:hover{
+                background-color: rgb(52, 27, 58);
+
+        }
+       /* .dayone{
+           text-align: center;
+       }
+       .daytwo{
+           text-align: center;
+       } */
+    </style>
+    
+    </head>
+
+    <body>
+
+        <form action="/public" method="post">
+            <button class="button" class="button"> Menu</button>
+        </form>
+
+        <h1 style="text-align: center;">Journals</h1>
+        <br>
+        <div class="journ" style = "width: 700px; height: 300px; outline: solid ; outline-color:black"> <p id = "dayone"  >     </p></div>
+       <br>
+        <div  class="journ" id = "daytwo" style = "width: 700px; height: 300px; outline: solid ; outline-color: black"><p id = "daytwo" ></p></div>
+        <br>
+        <div  class="journ" id = "daythree" style = "width: 700px; height: 300px; outline: solid ; outline-color:black"></div>
+        <br>
+        <div  class="journ" id = "dayfour" style = "width: 700px; height: 300px; outline: solid ; outline-color: black"></div>
+
+        <br>
+        <div  class="journ" id = "dayfive" style = "width: 700px; height: 300px; outline: solid ; outline-color: black"></div>
+        <br>
+        <div  class="journ" id = "daysix" style = "width: 700px; height: 300px; outline: solid ; outline-color: black"></div>
+        <br>
+        <div  class="journ" id = "dayseven" style = "width: 700px; height: 300px; outline: solid ; outline-color: black"></div>
+        
+    </body>
+</html>
