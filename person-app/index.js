@@ -75,11 +75,41 @@ app.post('/Dashboard', (req, res) =>{
                 
                     returnArray.push(daily);
               
+                   
             });
             // send it back as JSON Array
             console.log("Sending now");
             // res.json(returnArray); 
             //console.log(returnArray);
+           
+            let values = []; 
+            
+            for(let i =0; i < returnArray.length; i++)
+            {
+                
+                // if( returnArray[i].hasOwnProperty(returnArray[i].trackers) )
+                //  {
+                    let tempvalues =[]; 
+                    let  tem = returnArray[i].trackers; 
+                    // console.log(tem); 
+                    for(item in returnArray[i].trackers)
+                    {
+                        if(item === 'energy')
+                        {
+                            tempvalues.push(returnArray[i].trackers.energy)
+                        }
+                        else if(item === 'energy')
+                        {
+                            tempvalues.push(returnArray[i].trackers.energy)
+                        }
+                        
+                    }
+                    console.log(tempvalues); 
+
+                // }
+
+            }
+
             
             data[0]= returnArray; 
             //res.clearCookie('user'); 
