@@ -18,8 +18,6 @@ var Journal = require('./Journal.js');
 
 const path = require('path');
 
-
-
 //////////////////
 
 // navigate to health tracker
@@ -27,42 +25,42 @@ app.use(express.static(path.join (__dirname,'/public/')));
 // app.use('/', (req, res) => { res.sendFile(path.join(__dirname, '/public/index.html')) } );
 
 app.use(express.static(path.join(__dirname,'/views/')));
-
 app.use(express.static(path.join(__dirname,'/tr')));
-
-app.use(express.static(path.join(__dirname,'/Dashboard/visual.js'))); 
-
+app.use(express.static(path.join(__dirname,'/Dashboard/visual.js')));
 
 app.post('/tracker', (req, res) => {
     res.sendFile(path.join(__dirname, '/tr/tracker.html'));
 });
-//create goals 
+
+// create goals 
 app.post('/DailyGoals', (req, res) => {
     res.sendFile(path.join(__dirname, '/tr/goalCreator.html'));
 });
 
-
 // retrieve goals and dalies 
-app.post('/Dashboard', (req, res) =>{
+app.post('/Dashboard', (req, res) => {
     // construct the query object
     let queryObj = {};
 
     let data = [null,null];
    
-    if(req.query.userID && req.query.date) {
-        queryObj = { 
+    if(req.query.userID && req.query.date) 
+    {
+        queryObj = 
+        { 
                 "userID" : req.query.userID,
                 "date" : {$gte : req.query.date}
-               };
+        };
     }
 
-    Daily.find(queryObj, (err, dailies) => 
-    {
-        if(err) {
+    Daily.find(queryObj, (err, dailies) => {
+        if(err) 
+        {
             console.log('Failure to retrieve the Daily/ies from the database: ' + err);
             res.json([{"error" : "FailureToReturnDailies"}]);
         } 
-        else if(dailies.length == 0) {
+        else if(dailies.length == 0) 
+        {
             console.log('No match found in Dailies');
             res.json([{"error" : "DailiesNotFound"}]);
         } 
@@ -70,20 +68,16 @@ app.post('/Dashboard', (req, res) =>{
         {
             // construct an array out of the result
             let returnArray = [];
-            dailies.forEach( (daily) => 
-            {
-                
-                    returnArray.push(daily);
-              
-                   
+            dailies.forEach( (daily) => {
+                returnArray.push(daily);
             });
+
             // send it back as JSON Array
             console.log("Sending now");
-            // res.json(returnArray); 
-            //console.log(returnArray);
-           
+            
             let values = []; 
             
+
             for(let i =0; i < returnArray.length; i++)
             {
                 let tempvalues =[]; 
@@ -143,21 +137,29 @@ app.post('/Dashboard', (req, res) =>{
                     tempvalues.push('*');
                     //console.log(tempvalues); 
                    values.push(tempvalues); 
-                // }
 
+                for(let i = 0; i < returnArray.length; i++)  {
+               
+                    let tempvalues =[]; 
+                    let tem = returnArray[i].trackers;
+                    for(item in returnArray[i].trackers) {
+                        if(item === 'energy') {
+                            tempvalues.push(returnArray[i].trackers.energy)
+                        } else if(item === 'energy') {
+                            tempvalues.push(returnArray[i].trackers.energy)
+                        }
+                    }
+                    console.log(tempvalues); 
+                }
+               
             }
-            // console.log(values); 
+           
 
             
-            data[0]= values; 
-            //res.clearCookie('user'); 
-            
-           // res.cookie = ('user', returnArray); 
-            
-            //res.sendFile(path.join(__dirname,'/public/Dashboard/dashboard.html')); 
-            // res.render('daily_dashboard', {test : returnArray});
+            data[0]= values;    
         }
-    })
+    }) 
+   
 
     // get goals 
     if(req.body.userID) {
@@ -171,38 +173,28 @@ app.post('/Dashboard', (req, res) =>{
         } else if(goals.length == 0) {
             console.log('No match found in Goals');
             res.json({});
-        } 
-        else 
-        {
+        } else {
             // construct an array out of the result
             let returnArray = [];
             goals.forEach( (goal) => {
                 // only showing Daily goals
-                  
-                    //console.log(goal); 
-                    returnArray.push(goal);
-                  
-               
+                //console.log(goal); 
+                returnArray.push(goal);
+                
             });
             // send it back as JSON Array
-            //res.json(returnArray);
+            // res.json(returnArray);
             // console.log(returnArray); 
-            //data.push(returnArray)
+            // data.push(returnArray)
             // res.cookie = ('user', returnArray); 
             data[1]= returnArray; 
-            //console.log(data); 
+            // console.log(data); 
             res.render('daily_dashboard', {test : data});
         }
     })
-
-
-
 });
 
-    
-
-
-/// endpoints for web
+// endpoints for web
 app.use('/createTrackerData', (req, res) => {
     let temp = JSON.parse(req.body.trackers); 
     console.log(temp); 
@@ -214,24 +206,18 @@ app.use('/createTrackerData', (req, res) => {
         // req.body.trackers,
     });
     
-    //console.log(req.body.userID);
-    //console.log(req.body.date);
-   // console.log(req.body.trackers);
-    
     newDaily.save((err) => {
         if(err) {
-                res.type('html').status(200);
-                res.write('Failure to add the Daily to the database: ' + err);
-                console.log(err);
-                res.end();
+            res.type('html').status(200);
+            res.write('Failure to add the Daily to the database: ' + err);
+            console.log(err);
+            res.end();
         } else {
-                //res.send('Success');
-                res.sendFile(path.join(__dirname,'/tr/tracker.html'));
-                console.log('Success')
+            res.sendFile(path.join(__dirname,'/tr/tracker.html'));
+            console.log('Success')
         }
     })
 });
-
 
 app.post('/createJournalWeb', (req, res) => {
     var newJournal = new Journal ({
@@ -270,7 +256,8 @@ app.post('/createGoalWeb', (req, res) => {
         }
     })
 })
-//******* */
+
+//*******
 app.post('/viewjournals', (req, res) => {
     let queryObj = {};
     
@@ -280,33 +267,25 @@ app.post('/viewjournals', (req, res) => {
                     "date" : {$gte : req.query.date}
                    };
     }
+    
     Journal.find(queryObj, (err, journals) => {
         if(err) {
             console.log('Failure to retrieve the Journal/s from the database: ' + err);
             res.json({});
-        } 
-        else if(journals.length == 0) {
+        } else if(journals.length == 0) {
             console.log('No match found in Journals');
             res.json({});
-        } 
-        else {
+        } else {
             // construct an array out of the result
             let returnArray = [];
+            
             journals.forEach( (daily) => {
                 returnArray.push(daily);
             });
-            //res.json = returnArray; 
-            // send it back as JSON Array
-
+            
             res.render('vJournals', {test :returnArray});
-
-            //res.clearCookie
-            //res.cookie('user', returnArray);
-            //res.sendFile(path.join(__dirname,'/public/Journal/viewJournals.html')); 
         }
     })
-
-   
 });
 
 /***************************************/
@@ -324,18 +303,17 @@ app.post('/createUser', (req, res) => {
         // save the User to the database 
         newUser.save( (err, user) => { 
             if(err) {
-                //res.type('html').status(200);
+                // res.type('html').status(200);
                 if (err.code === 11000){
                     res.send({"error" : "emailAlreadyExists"});
-                }
-                else {
+                } else {
                     res.send({"error" : "failureToAddUser"});
                     
                 }
-                console.log(err);
                 
+                console.log(err);
             } else {
-                //https://stackoverflow.com/questions/6854431/how-do-i-get-the-objectid-after-i-save-an-object-in-mongoose/47002504
+                // https://stackoverflow.com/questions/6854431/how-do-i-get-the-objectid-after-i-save-an-object-in-mongoose/47002504
                 console.log(user._id);
                 res.send({"success" : "Success", "id" : user._id});
             }
@@ -466,9 +444,9 @@ app.get('/getJournals', (req, res) => {
     
     if(req.query.userID && req.query.date) {
         queryObj = { 
-                    "userID" : req.query.userID,
-                    "date" : {$gte : req.query.date}
-                   };
+            "userID" : req.query.userID,
+            "date" : {$gte : req.query.date}
+        };
     }
     
     Journal.find(queryObj, (err, journals) => {
