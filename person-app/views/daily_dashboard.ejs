@@ -7,23 +7,43 @@
 
         <style>
             body{
-                background-color: cornflowerblue;
+                background-color: rgb(113, 149, 160);;
+               
             }
             .goalLists{
                 float: left; 
                 outline: black;
                 outline-style: solid;
+                
                 text-align: center;
                 margin-right: auto; 
                 margin-left: auto;
+                font-family: Arial;
+            }
+            button{
+                font-family: Helvetica, sans-serif;
+                font-size: 1.3em;
+                color: white;
+
+                border: none 0;
+                border-radius: 5px;
+                width: 100px; 
+                height: 45px;
+                padding: 5px 5px;
+                margin: 5px 5px;
+                cursor: pointer;
+                
+                text-align: center;
+
+                background-color: #274946;
+            
             }
         </style>
     </head>
-    <body>
-        <button onclick = "window.history.back();">Back</button>
-        <button onclick = "window.open('/', '_self');">Main Menu</button><br /><br />
+    <body style="font-family: Arial, sans-serif;">
+       
         
-        <h1 style="text-align: center;">  Dailies </h1>
+        <h1 style="text-align: center; ">  Dailies </h1>
         <br >
         <div id = "container" style = "width: 1200px; height: 600px; margin-right: auto; margin-left: auto;"></div>
         <br /><br />
@@ -31,42 +51,42 @@
 
         <br>
         <br>
-        <h1 style="text-align: center;">  Goals  </h1>
+        <h1 style="text-align: center; ">  Goals  </h1>
 
-        <div style="width: 900px; height: 600px; margin-right: auto; margin-left: auto;">
-            <div class ="goalLists" id="dailygoals" style = " width: 300px; height: 400px; background-color: aliceblue; overflow:auto; ">
+        <div style="width: 900px; height: 600px; margin-right: auto; margin-left: auto; ">
+            <div class ="goalLists" id="dailygoals" style = " width: 300px; height: 400px; background-color: rgba(255, 255, 255, 0.8); overflow:auto; ">
               <br>
               <h3 style="text-align: center;">Daily Goals</h3>
       
-              <ul style="color: black; text-align: center; "> 
+              <ul style="color: black; "> 
                 <% for( let i =0; i< test[1].length; i++){ %> 
                     <%if( test[1][i].type === 'daily'){ %>
-                    <p><%= test[1][i].description %></p> <% } }%>
+                    <p style="text-align: center;"><%= test[1][i].description %></p> <% } }%>
                     
               </ul>
             </div>
 
-            <div class ="goalLists" id="weeklygoals" style = " width: 300px; height: 400px; background-color: aliceblue; overflow:auto;">
+            <div class ="goalLists" id="weeklygoals" style = " width: 300px; height: 400px; background-color: rgba(255, 255, 255, 0.8); ">
                 <br>
                 <h3 style="text-align: center;">Weekly Goals</h3>
       
-                <ul style="color: black; text-align: center;"> 
+                <ul style="color: black; "> 
                 <% for( let i =0; i< test[1].length; i++){%> 
                     <%if( test[1][i].type === 'weekly'){ %>
-                    <p><%= test[1][i].description %></p> <%} }%>
+                    <p style="text-align: center;"><%= test[1][i].description %></p> <%} }%>
         
                 </ul>
             </div>
        
         
-            <div class ="goalLists" id="monthlygoals" style = " width: 300px; height: 400px; background-color: aliceblue; overflow:auto;">
+            <div class ="goalLists" id="monthlygoals" style = " width: 300px; height: 400px; background-color: rgba(255, 255, 255, 0.8); ">
                  <br>
-                <h3 style="text-align: center;">Monthly Goals</h3>
+                <h3 style="text-align: center; ">Monthly Goals</h3>
       
-                <ul style="color: black; text-align: center;"> 
+                <ul style="color: black; "> 
                 <% for( let i =0; i< test[1].length; i++){%> 
                     <%if( test[1][i].type === 'monthly'){ %>
-                    <p><%= test[1][i].description %></p> <%  } }%>
+                    <p style="text-align: center;"><%= test[1][i].description %></p> <%  } }%>
         
                 </ul>
             </div>
@@ -182,8 +202,10 @@
              
             
          anychart.onDocumentReady(function () {
-                 var chart = anychart.line();
-                
+                 
+                var chart = anychart.line();
+                chart.legend(true);
+
                  let dates =[]; 
 
                     let energy = []; 
@@ -229,7 +251,6 @@
                         motivation.push(tracker[i][5]); 
                     }    
 
-
                 }
 
                 //console.log(stress);
@@ -242,7 +263,7 @@
                 //console.log(tempE);
                       
                 var energyline = chart.line(tempE);
-
+                energyline.name("Energy");
 
 
                 let tempM=[]
@@ -252,7 +273,7 @@
                 }
                 //console.log(tempM);
                 var motivationline = chart.line(tempM);
-
+                motivationline.name("Motivation")
                     
                 let tempS=[]
                 for(let i = 0; i < stress.length; i++)
@@ -261,7 +282,7 @@
                 }
                 // console.log( "tempS" +tempS);
                 var stressline = chart.line(tempS);
-
+                stressline.name("Stress");
                 
                 let tempD=[]
                 for(let i = 0; i < depression.length; i++)
@@ -270,7 +291,7 @@
                 }
                 
                 var depline = chart.line(tempD);
-
+                depline.name("Depression");
 
                 let tempA=[]
                 for(let i = 0; i < anxiety.length; i++)
@@ -278,8 +299,9 @@
                     tempA.push({ x: dates[i], y: anxiety[i]});
                 }
                 
-                var depline = chart.line(tempA);
-
+                var anxietyline = chart.line(tempA);
+                anxietyline.name("Anxiety");
+                
 
                 chart.title('Tracker data ');
                 
