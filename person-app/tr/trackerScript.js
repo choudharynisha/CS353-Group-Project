@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     // submit
    const sub = document.querySelector('#submitB'); 
    const clear = document.querySelector('#clearB');
-   const back = document.querySelector('#backb'); 
+   
    
    oneE.addEventListener('click',()=>{
         document.getElementById("engeryRes").innerHTML = "1";
@@ -240,14 +240,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         document.getElementById("engeryRes").innerHTML = "";
     });
 
-    back.addEventListener('click', ()=> {
-        const form = document.createElement('form');
-        form.method = "post"; 
-        form.action ="/";
-        document.body.appendChild(form);  
-        form.submit(); 
-
-    });
+    
 
     sub.addEventListener('click',()=>{
         let e = parseInt (document.getElementById("engeryRes").innerText); 
@@ -281,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                         const user = document.createElement('input'); 
                         user.type='HIDDEN';
                         
-                        user.value = "12345"; 
+                        user.value = "609c6206cfa144b06873b150"; 
                         user.name = "userID";
                         user.id = "userID";
 
