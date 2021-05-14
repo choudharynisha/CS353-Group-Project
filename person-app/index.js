@@ -207,7 +207,7 @@ app.post('/createJournalWeb', (req, res) => {
             console.log(err);
             res.end();
         } else {
-            res.sendFile(path.join(__dirname,'/public/Journal/journal.html'));
+            res.redirect('/');
         }
     })
 })
