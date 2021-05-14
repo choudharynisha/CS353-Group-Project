@@ -4,7 +4,7 @@ const week = document.querySelector('#weeklyb');
 const month = document.querySelector('#Monthlyb'); 
 const year = document.querySelector('#yearlyb');
 const clear = document.querySelector('#clearB');
-const back = document.querySelector('#backb'); 
+
 
 const finished = document.querySelector('#submitB');
 let typeOfG = null; 
@@ -86,14 +86,7 @@ let typeOfG = null;
                     }
     });
 
-    back.addEventListener('click', ()=> {
-        const form = document.createElement('form');
-        form.method = "post"; 
-        form.action ="/";
-        document.body.appendChild(form);  
-        form.submit(); 
-
-    });
+    
 
     clear.addEventListener('click', ()=> {
         document.getElementById("weeklyb").style.outlineColor = "rgb(115, 114, 221)";
