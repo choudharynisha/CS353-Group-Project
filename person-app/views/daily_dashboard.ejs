@@ -19,25 +19,7 @@
         <br /><br />
         <div id = "container" style = "width: 500px; height: 400px;"></div>
         <br /><br />
-       <!-- <p style="color: black;">
-    
-
-      <%  let date = [0];
-            let tra = [0];
-            let list =[];
-            
-          for( let i =0; i< test[0].length; i++){ %> 
-           <% date = [test[0][i] ];
-                  %>
-                 <p><%= date %></p>
-
-               <% list.push(date);
-                 %> <% } 
-                 
-          %>
-
-                
-        </p> -->
+      
 
         <br>
         <br>
@@ -80,103 +62,149 @@
         </div>
 
 
+        <% let today = new Date(); 
+        let start = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); 
+        let lookingAt = [new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) , new Date(Date.now() - 6 * 24 * 60 * 60 * 1000), new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), new Date(Date.now() - 4 * 24 * 60 * 60 * 1000), new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)]; 
+        
+        let data =[]; 
+        for(let i = 0; i < test[0].length; i++)
+        {
+              
+                let temp = []; 
+                temp = test[0][i];
+                
+                if( start < test[0][i][0] )
+               {
+                  
+                   let ob =[ test[0][i][0], test[0][i][1]    ,  test[0][i][2] ,  test[0][i][3], test[0][i][4]  , test[0][i][5], "*" ]; 
+                 data.push(ob);   %>
+                 <p> <%= %> </p>
+                 <%}
+
+
+              
+               
+       }%>
+       
+
+
+
+      
+        
 
 
         <script>
-            // let currentUser = '"1234"'; 
-             var temptracker =  "<%= test[0] %>"; 
-             
-             //console.log(temptracker);
+           var data =[];
+            data = "<%= data %>";
+             let temptracker = data.split('*'); 
 
+
+             //.log(temptracker);
+
+
+            var start = "<%= start %>"   ;
             
-           
+            //console.log(start);
+
+            var tracker =[]; 
             
-
-            
-             let tracker = temptracker.split('*'); 
-
-
-             let data =[];
-            //console.log(tracker[0]); 
-
-            for (var i = 0 ; i < tracker.length; i += 6)
+            for (var i = 0 ; i < temptracker.length; i += 6)
             {
                 //tracker[i].replaceAll(" ", ""); 
-                var tempdata =tracker[i].split(',');
-                
-                // if(tempdata[1])
-                // {
-                //         var da = Date.parse(tempdata[1]); 
-                //         tempdata[1] = da.getUTCDate();  
-                // }
-                // else
-                // {
-                    
-                // }
+                var tempdata =temptracker[i].split(',');
+                let tem =[];
+                if( tempdata[0] === "")
+                {
+                    //console.log(tempdata);
 
-                //console.log(tempdata);
-
-                data.push(tempdata);
+                    for(let i =1; i < tempdata.length; i++)
+                    {
+                        tem.push(tempdata[i]); 
+                    }
+                    tracker.push(tem);
+                }
+                else
+                {
+               
+                 tracker.push(tempdata);
+                }
             }
-             console.log(data);
+             // console.log(tracker);
 
-            // for(let i = 0; i < tracker.length; i++)
-            // {
-            //     if(tracker[i] === '' || tracker[i] === 'null')
-            //     {
-            //         tracker[i] = 11; 
-            //     }
-            //     else if (Number.isInteger(tracker[i].valueOf) ) 
-            //     {
-            //         let tempnum = tracker[i]; 
-            //         tracker[i] = parseInt(tempnum); 
-            //     }
-            // }
-            // console.log(tracker); 
-            // console.log(nt);
-
-            // console.log(nt); 
-            // let tem = tracker.split(']'); 
-            // console.log(tem); 
-       //anychart.onDocumentReady(function () {
+            
          anychart.onDocumentReady(function () {
                  var chart = anychart.line();
                 
-                    //  var energy = chart.line([
-                    // {x: "day one", value: tracker[0]},
-                    // {x: "day two", value: tracker[5]},
+                 let dates =[]; 
+
+                    let energy = []; 
+
+                    let depression = [];  
+
+                    let anxiety = [];  
+
+                    let stress =[]; 
+
+                    let motivation =[]; 
+
+                for(let i =0; i < tracker.length; i++)
+                {
+                    //console.log(tracker[i]); 
                     
-                // ]);
-                // var depression = chart.line([
-                //     {x: "day one", value: tracker[1]},
-                //     {x: "day two", value: tracker[6]},
+                    // dates
+                    dates.push(tracker[i][0]); 
                     
-        //         ]);
-        //         var anxiety = chart.line([
-        //             {x: "day one", value: tracker[2]},
-        //             {x: "day two", value: tracker[7]},
-                    
-        //         ]);
-        //         var stress = chart.line([
-        //             {x: "day one", value: tracker[3]},
-        //             {x: "day two", value: tracker[8]},
-                    
-        //         ]);
-        //         var motivation = chart.line([
-        //             {x: "day one", value: tracker[4]},
-        //             {x: "day two", value: tracker[9]},
-                    
-        //         ]);
+                    // index 1 
+                    if(tracker[i][1] !='')
+                    {
+                        energy.push(tracker[i][1]);
+                    }
+                    // index 2
+                    if(tracker[i][2] != '')
+                    {
+                        depression.push(tracker[i][2]);
+                    }
+                    // index 3 
+                    if(tracker[i][3] != '')
+                    {
+                        anxiety.push(tracker[i][3]); 
+                    }
+                    // index 4
+                    if(tracker[i][4] != '')
+                    {
+                        stress.push(tracker[i][4]);
+                    }
+                    // index 5
+                    if(tracker[i][5] != '')
+                    {
+                        motivation.push(tracker[i][5]); 
+                    }    
+
+
+                }
+                console.log(stress);
+
+                let tempE=[]
+                for(let i = 0; i < energy.length; i++)
+                {
+                            tempE.push({ x: dates[i], y: energy[i]});
+                }
+                console.log(tempE);
+                      
+                var energyline = chart.line(tempE);
+
+
+
+                      let tempM=[]
+                    for(let i = 0; i < motivation.length; i++)
+                    {
+                            tempM.push({ x: dates[i], y: motivation[i]});
+                    }
+                    console.log(tempM);
+                      var energyline = chart.line(tempM);
+
+
                 
-        //         // var series2 = chart.line([
-        //         //     {x: 'Cycling', value: 35},
-        //         //     {x: 'Swimming', value: 23},
-        //         //     {x: 'Run', value: 14},
-        //         //     {x: 'Hiking', value: 50}
-        //         // ]);
-                
-        //         // // Get Z-Index of the line series.
-        //         // var zIndex = series2.zIndex();
                 
                 chart.title('Tracker data ');
                 
@@ -184,7 +212,7 @@
                 chart.draw();
          });
 
-        // });
+       
          </script>
         
       

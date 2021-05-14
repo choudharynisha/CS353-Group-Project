@@ -97,27 +97,27 @@ app.post('/Dashboard', (req, res) => {
                         var fillin =0; 
                         if(item === 'energy')
                         {
-                            tempvalues.push( item + " " + returnArray[i].trackers.energy); 
+                            tempvalues.push(  returnArray[i].trackers.energy); 
                             fillin = fillin +1; 
                         }
                         else if(item === 'depression')
                         {
-                            tempvalues.push(item + " " + returnArray[i].trackers.depression);
+                            tempvalues.push( returnArray[i].trackers.depression);
                             fillin = fillin +1; 
                         }
                         else if(item === 'anxiety')
                         {
-                            tempvalues.push(item + " " + returnArray[i].trackers.anxiety);
+                            tempvalues.push( returnArray[i].trackers.anxiety);
                             fillin = fillin +1; 
                         }
                         else if(item === 'stress')
                         {
-                            tempvalues.push(item + " " + returnArray[i].trackers.stress);
+                            tempvalues.push( returnArray[i].trackers.stress);
                             fillin = fillin +1; 
                         }
                         else if(item === 'motivation')
                         {
-                            tempvalues.push( item + " " + returnArray[i].trackers.motivation);
+                            tempvalues.push(  returnArray[i].trackers.motivation);
                             fillin = fillin +1; 
                         }
                         else
@@ -134,7 +134,7 @@ app.post('/Dashboard', (req, res) => {
                        
                         
                     }
-                    tempvalues.push('*');
+                   
                     //console.log(tempvalues); 
                    values.push(tempvalues); 
 
@@ -149,7 +149,7 @@ app.post('/Dashboard', (req, res) => {
                             tempvalues.push(returnArray[i].trackers.energy)
                         }
                     }
-                    console.log(tempvalues); 
+                    //console.log(tempvalues); 
                 }
                
             }
