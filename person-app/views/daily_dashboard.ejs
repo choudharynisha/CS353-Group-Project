@@ -25,18 +25,18 @@
         
         <h1 >  Dailies </h1>
         <br /><br />
-        <div id = "container" style = "width: 700px; height: 400px;"></div>
+        <div id = "container" style = "width: 1000px; height: 400px;"></div>
         <br /><br />
       
 
         <br>
         <br>
 
-        <div class ="goalLists" id="dailygoals" style = " width: 300px; height: 400px; background-color: aliceblue; ">
+        <div class ="goalLists" id="dailygoals" style = " width: 300px; height: 400px; background-color: aliceblue; overflow:auto;">
             <br>
             <h3 style="text-align: center;">Daily Goals</h3>
       
-            <ul style="color: black; text-align: center;"> 
+            <ul style="color: black; text-align: center; "> 
                 <% for( let i =0; i< test[1].length; i++){ %> 
                     <%if( test[1][i].type === 'daily'){ %>
                     <p><%= test[1][i].description %></p> <% } }%>
@@ -44,7 +44,7 @@
              </ul>
         </div>
 
-        <div class ="goalLists" id="weeklygoals" style = " width: 300px; height: 400px; background-color: aliceblue; ">
+        <div class ="goalLists" id="weeklygoals" style = " width: 300px; height: 400px; background-color: aliceblue; overflow:auto;">
             <br>
             <h3 style="text-align: center;">Weekly Goals</h3>
       
@@ -57,7 +57,7 @@
         </div>
        
         
-        <div class ="goalLists" id="monthlygoals" style = " width: 300px; height: 400px; background-color: aliceblue; ">
+        <div class ="goalLists" id="monthlygoals" style = " width: 300px; height: 400px; background-color: aliceblue; overflow:auto;">
             <br>
             <h3 style="text-align: center;">Monthly Goals</h3>
       
@@ -72,8 +72,9 @@
         <br>
         <br>
         <br >
-        
-        <% let today = new Date(); 
+
+        <% 
+        let today = new Date(); 
         let start = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); 
         let lookingAt = [new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) , new Date(Date.now() - 6 * 24 * 60 * 60 * 1000), new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), new Date(Date.now() - 4 * 24 * 60 * 60 * 1000), new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)]; 
         
@@ -193,7 +194,7 @@
                 let tempE=[]
                 for(let i = 0; i < energy.length; i++)
                 {
-                            tempE.push({ x: dates[i], y: energy[i]});
+                            tempE.push({ x: dates[i], y: energy[i] });
                 }
                 //console.log(tempE);
                       
