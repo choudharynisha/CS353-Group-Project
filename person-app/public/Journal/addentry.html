@@ -3,20 +3,75 @@
     <head>
         <script type = "text/javascript" src = "/public/Journal/addentry.js"></script>
         <title>Add an Entry</title>
+
+        <style>
+            body {
+                background-color: rgb(113, 149, 160);
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            #entry{
+                width: 100%;
+                box-sizing: border-box;
+                border: none 0;
+                padding: 20px;
+            }
+
+            button {
+                font-family: Helvetica, sans-serif;
+                font-size: 1.3em;
+                background-color: #274946;
+                color: white;
+
+                display: inline-block;
+
+                border: none 0;
+                border-radius: 5px;
+                width: 200px; 
+                padding: 10px 10px;
+                cursor: pointer;
+                
+                text-align: center;
+            }
+
+            button:hover {
+                background-color: #172e2c;
+            }
+
+            #container {
+                width: 80vw;
+                margin: 30px auto;
+            }
+
+            #title {
+                font-family: Arial, Helvetica, sans-serif;
+                box-sizing: border-box;
+                padding-left: 20px;
+                background-color: #274946;
+                color: white;
+                line-height: 1.8em;
+                margin: 0;
+            }
+
+        </style>
     </head>
     <body>
-        <h1>Add an Entry</h1>
-        <button onclick = "window.history.back();">Back</button> 
-        <button onclick = "window.open('/public/Journal/journal.html', '_self');">View Journal</button>
-        <button onclick = "window.open('/', '_self');">Main Menu</button><br /><br />
-        
-        <form id = "entryForm">
-            <textarea name = "entry" cols = "200" rows = "40" id = "entry" placeholder = "Today's entry..." required></textarea><br /><br />
+        <div id="container">
+            <h1 id="title">Add an Entry</h1>
+            <!--<button onclick = "window.history.back();">Back</button>-->
+            <!--<button onclick = "window.open('/public/Journal/journal.html', '_self');">View Journal</button>-->
             
-        </form>
-        <button type = "button" name = "clear" id = "clear">Clear</button><br><br>
+            <form id = "entryForm">
+                <textarea name = "entry" cols = "200" rows = "40" id = "entry" placeholder = "Today's entry..." required></textarea>                
+            </form>
+
+            <br/><br/>
+
+            <button onclick = "window.open('/', '_self');">Main Menu</button>
+            <button type = "button" name = "clear" id = "clear">Clear</button>
 
 
-        <button type = "submit" name = "button" id = "submit">Submit</button>
+            <button type = "submit" name = "button" id = "submit">Submit</button>
+        </div>
     </body>
 </html>
