@@ -19,15 +19,17 @@
             android:id="@+id/titleField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="24dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#880E4F"
             android:freezesText="false"
-            android:gravity="center"
+            android:paddingVertical="4dp"
+            android:paddingStart="16dp"
             android:text="Login"
+            android:textAlignment="viewStart"
             android:textAllCaps="false"
-            android:textColor="#8E536F"
-            android:textSize="50dp"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="#FFFFFF"
             tools:ignore="HardcodedText" />
 
         <EditText
@@ -37,7 +39,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="10dp"
             android:background="#EDDAE3"
-            android:hint=" email"
+            android:hint=" Email"
             android:inputType="textMultiLine|textNoSuggestions"
             android:lines="1"
             android:paddingHorizontal="5dp"
@@ -53,11 +55,11 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="10dp"
             android:background="#EDDAE3"
-            android:inputType="textMultiLine|textNoSuggestions"
+            android:hint=" Password"
+            android:inputType="textMultiLine|textPassword"
             android:lines="1"
             android:paddingHorizontal="5dp"
             android:paddingVertical="5dp"
-            android:hint=" password"
             android:scrollbars="horizontal"
             android:textColor="#202C32"
             android:textSize="30sp" />
@@ -74,21 +76,6 @@
             android:onClick="onClickLogin"
             tools:ignore="HardcodedText"/>
 
-        <Button
-            android:id="@+id/errorLogin"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="10dp"
-            android:clickable="false"
-            android:gravity="center"
-            android:text="Some kind of error here"
-            android:textAllCaps="false"
-            android:textSize="23dp"
-            app:backgroundTint="#B6839B"
-            tools:ignore="HardcodedText"
-            android:visibility="invisible"/>
-
         <Button android:id="@+id/launchCreateAcc"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -100,6 +87,21 @@
             android:textSize="23dp"
             app:backgroundTint="#93984E"
             tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/errorLogin"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="10dp"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="Some kind of error here"
+            android:textAllCaps="false"
+            android:textSize="23dp"
+            android:visibility="invisible"
+            app:backgroundTint="#B6839B"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 

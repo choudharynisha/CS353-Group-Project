@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,6 +79,10 @@ public class WeeklyStatsActivity extends AppCompatActivity {
         urls = new URL[]{goalsUrl};
         AsyncTask<URL, String, String> getGoals = new RetrieveGoalsTask().execute(urls);
 
+    }
+
+    public void onClickReturnToMain(View view) {
+        finish();
     }
 
     private class CustomDataEntry extends ValueDataEntry {

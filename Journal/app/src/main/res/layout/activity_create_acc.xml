@@ -19,15 +19,16 @@
             android:id="@+id/titleField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="24dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#880E4F"
             android:freezesText="false"
-            android:gravity="center"
-            android:text="Create An Account"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="4dp"
+            android:text="Sign Up"
             android:textAllCaps="false"
-            android:textColor="#8E536F"
-            android:textSize="40dp"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="#FFF"
             tools:ignore="HardcodedText" />
 
         <EditText
@@ -38,7 +39,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="#EDDAE3"
-            android:hint=" preferred name"
+            android:hint=" Preferred Name"
             android:inputType="textMultiLine|textNoSuggestions"
             android:lines="1"
             android:paddingHorizontal="5dp"
@@ -54,7 +55,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="10dp"
             android:background="#EDDAE3"
-            android:hint=" email"
+            android:hint=" Email"
             android:inputType="textMultiLine|textNoSuggestions"
             android:lines="1"
             android:paddingHorizontal="5dp"
@@ -70,11 +71,11 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="10dp"
             android:background="#EDDAE3"
-            android:inputType="textMultiLine|textNoSuggestions"
+            android:hint=" Password"
+            android:inputType="textNoSuggestions|textPassword"
             android:lines="1"
             android:paddingHorizontal="5dp"
             android:paddingVertical="5dp"
-            android:hint=" password"
             android:scrollbars="horizontal"
             android:textColor="#202C32"
             android:textSize="30sp" />
@@ -106,21 +107,22 @@
             tools:ignore="HardcodedText"
             android:visibility="invisible"/>
 
-        <Button
-            android:id="@+id/launchDashboard"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginVertical="10dp"
-            android:gravity="center"
-            android:onClick="onClickReturnLogin"
-            android:text="Back"
-            android:textSize="23dp"
-            app:backgroundTint="#558580"
-            tools:ignore="HardcodedText" />
-
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/launchDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="10dp"
+        android:gravity="center"
+        android:onClick="onClickReturnLogin"
+        android:text="Back"
+        android:textSize="23dp"
+        app:backgroundTint="#44746F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="HardcodedText"
+        tools:layout_editor_absoluteX="30dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

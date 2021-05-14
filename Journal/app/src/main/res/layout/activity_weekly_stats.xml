@@ -4,22 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#D3A9A9"
     tools:context=".WeeklyStatsActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/txtDashboardHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#455CE0"
-            android:padding="8dp"
+            android:background="#880E4F"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="4dp"
             android:text="Dashboard"
             android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             android:textColor="#FFFFFF" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,8 +43,11 @@
             <com.anychart.AnyChartView
                 android:id="@+id/lineGraphView"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="300dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="16dp">
 
             </com.anychart.AnyChartView>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -48,7 +56,9 @@
             android:id="@+id/txtGoalsHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#8450CC"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:background="#4A148C"
             android:padding="8dp"
             android:text="Goals"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -57,8 +67,20 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvGoals"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp" />
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="16dp" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnReturnMain"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#44746F"
+        android:text="Back to Main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onClickReturnToMain"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
