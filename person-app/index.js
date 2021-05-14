@@ -136,9 +136,11 @@ app.post('/Dashboard', (req, res) => {
    
 
     // get goals 
-    if(req.body.userID) {
-        queryObj = { "userID" : req.body.userID};
+    if(req.query.userID) {
+        queryObj = { "userID" : req.query.userID};
     }
+
+    
     
     Goal.find(queryObj, (err, goals) => {
         if(err) {
