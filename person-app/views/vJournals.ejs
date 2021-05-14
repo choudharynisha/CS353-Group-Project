@@ -66,125 +66,28 @@
                 for (let i = test.length -1 ; i >= 0; i--){
                     if(viewing > 0 ) {%>
                 
+                        <div style="outline: solid; outline-color: black; width: 700px; height: 300px; 
+                        color: white;
+                        text-align: center;
+                         margin-right: auto; 
+                         margin-left: auto;">
+                        <div  class="journ"  style = "width: 700px; height: 50px; ">
+                             <p><%= test[i].date.toLocaleDateString()%> </p> 
+                           
+                        </div>
+                        <div  class="journ"  style = "width: 700px; height: 250px; overflow:auto; ">
+                            <p><%= test[i].journalEntry %> </p>
+                       </div>
+                       </div>
+                    <br>
                 <%  journalsTobePrinted.push( [test[i].date.toLocaleDateString() , test[i].journalEntry]); 
                     viewing  = viewing -1; }} 
                     
                 %>
 
-                    <script>
-                        var journ =  "<%= journalsTobePrinted %>"; 
-                        //journ = journ.valueOf(); 
-                        console.log(journ); 
-                    </script>
+                
 
-        <div style="outline: solid; outline-color: black; width: 700px; height: 300px; 
-        color: white;
-        text-align: center;
-         margin-right: auto; 
-         margin-left: auto;">
-        <div  class="journ"  style = "width: 700px; height: 50px; ">
-             <p><%= journalsTobePrinted[0][0] %> </p> 
-           
-        </div>
-        <div  class="journ"  style = "width: 700px; height: 250px; overflow:auto; ">
-            <p><%= journalsTobePrinted[0][1] %> </p>
-       </div>
-       </div>
-
-
-        <br>
-
-        <div style="outline: solid; outline-color: black; width: 700px; height: 300px; 
-        color: white;
-        text-align: center;
-         margin-right: auto; 
-         margin-left: auto;">
-        <div  class="journ" style = "width: 700px; height: 50px; ">
-             <p><%= journalsTobePrinted[1][0] %> </p> 
-           
-        </div>
-        <div  class="journ"  style = "width: 700px; height: 250px; overflow:auto; ">
-            <p><%= journalsTobePrinted[1][1] %> </p>
-       </div>
-       </div>
-
-
-        <br>
-        <div style="outline: solid; outline-color: black; width: 700px; height: 300px; 
-        color: white;
-        text-align: center;
-         margin-right: auto; 
-         margin-left: auto;">
-        <div  class="journ"  style = "width: 700px; height: 50px; ">
-             <p><%= journalsTobePrinted[2][0] %> </p> 
-           
-        </div>
-        <div  class="journ"  style = "width: 700px; height: 250px; overflow:auto; ">
-            <p><%= journalsTobePrinted[2][1] %> </p>
-       </div>
-       </div>
-
-        <br>
-        <div style="outline: solid; outline-color: black; width: 700px; height: 300px; 
-        color: white;
-        text-align: center;
-         margin-right: auto; 
-         margin-left: auto;">
-        <div  class="journ" style = "width: 700px; height: 50px; ">
-             <p><%= journalsTobePrinted[3][0] %> </p> 
-           
-        </div>
-        <div  class="journ" style = "width: 700px; height: 250px; overflow:auto; ">
-            <p><%= journalsTobePrinted[3][1] %> </p>
-       </div>
-       </div>
-
-        <br>
-        <div style="outline: solid; outline-color: black; width: 700px; height: 300px; 
-        color: white;
-        text-align: center;
-         margin-right: auto; 
-         margin-left: auto;">
-        <div  class="journ" id = "daytwo" style = "width: 700px; height: 50px; ">
-             <p><%= journalsTobePrinted[4][0] %> </p> 
-           
-        </div>
-        <div  class="journ" id = "daytwo" style = "width: 700px; height: 250px; overflow:auto; ">
-            <p><%= journalsTobePrinted[4][1] %> </p>
-       </div>
-       </div>
-       
-       
-       <br>
-       <div style="outline: solid; outline-color: black; width: 700px; height: 300px; 
-       color: white;
-       text-align: center;
-        margin-right: auto; 
-        margin-left: auto;">
-       <div  class="journ"  style = "width: 700px; height: 50px; ">
-            <p><%= journalsTobePrinted[5][0] %> </p> 
-          
-       </div>
-       <div  class="journ" style = "width: 700px; height: 250px; overflow:auto; ">
-           <p><%= journalsTobePrinted[5][1] %> </p>
-      </div>
-      </div>
       
-      <br>
-
-      <div style="outline: solid; outline-color: black; width: 700px; height: 300px; 
-        color: white;
-        text-align: center;
-         margin-right: auto; 
-         margin-left: auto;">
-        <div  class="journ" id = "daytwo" style = "width: 700px; height: 50px; ">
-             <p><%= journalsTobePrinted[6][0] %> </p> 
-           
-        </div>
-        <div  class="journ" id = "daytwo" style = "width: 700px; height: 250px; overflow:auto; ">
-            <p><%= journalsTobePrinted[6][1] %> </p>
-       </div>
-       </div>
         
     </body>
 </html>

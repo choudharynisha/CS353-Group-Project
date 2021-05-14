@@ -32,10 +32,8 @@ let typeOfG = null;
     finished.addEventListener('click', ()=>{
 
             const writing = document.getElementById("typedGoal").value; 
-            const titleG = document.getElementById("title").value; 
-            console.log(titleG); 
-            console.log(writing);
-            console.log(typeOfG);
+            console.log(writing); 
+            
             
             const form = document.createElement('form');
                         form.method = "post"; 
@@ -51,7 +49,12 @@ let typeOfG = null;
 
                         form.appendChild(userID); 
 
+                       
                         const type = document.createElement('input');
+                        if(typeOfG != null)
+                        {
+                            
+                        
                         type.type='HIDDEN';
                         type.name = "type";
                         type.id= "type"; 
@@ -59,16 +62,28 @@ let typeOfG = null;
 
                         form.appendChild(type); 
 
-                       const description = document.createElement('input'); 
-                       description.type='HIDDEN';
-                       description.name = "description";
-                       description.id= "description"; 
-                       description.value = writing; 
-                       form.appendChild(description); 
+                        if(writing != "")
+                        {
+                            const description = document.createElement('input'); 
+                            description.type='HIDDEN';
+                            description.name = "description";
+                            description.id= "description"; 
+                            description.value = writing; 
+                            form.appendChild(description); 
 
-                       document.body.appendChild(form); 
+                            document.body.appendChild(form); 
 
-                       form.submit(); 
+                            form.submit(); 
+                        }
+                        else
+                        {
+                            document.getElementById("des").style.color ="red" ;
+                        }
+                    }
+                    else
+                    {
+                        document.getElementById("choose").style.color ="red" ;
+                    }
     });
 
     back.addEventListener('click', ()=> {
@@ -86,8 +101,10 @@ let typeOfG = null;
         document.getElementById("yearlyb").style.outlineColor = "rgb(79, 5, 114)";
         typeOfG = null; 
        document.getElementById("typedGoal").value = ""; 
-            document.getElementById("title").value = ""; 
+           
 
     });
+
+   
 
 });
