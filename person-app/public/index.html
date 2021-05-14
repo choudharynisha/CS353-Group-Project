@@ -1,64 +1,135 @@
 <!DOCTYPE html>
 <html>
-    <style>
-        body{
-            background-color: rgb(226, 180, 212);
-            color: rgb(226, 105, 216);
-           
-        }
-        .button{
-            background-color: rgb(98, 51, 110);
-            font-family: Arial, Helvetica, sans-serif;
-            color: white;
-            text-align: center;
-            width: 100px; 
-            height: 90px;
-            padding: 30px 20px;
-            cursor: pointer;
-            display: flex;
-           
-           margin-right: auto; 
-           margin-left: auto;
-            
-           
-        }
-        .button:hover{
-                background-color: rgb(52, 27, 58);
+    <head>
+        <title>Menu</title>
+        <style>
+            body{
+                background-color: rgb(113, 149, 160);
+            }
 
-        }
-    </style>
+            #container {
+                width: 600px;
+                margin: 20px auto;
+                padding-bottom: 30px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 5px;
+            }
+
+            #title {
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 3em;
+                background-color: #274946;
+                color: white;
+                line-height: 1.8em;
+                border-radius: 5px 5px 0 0;
+            }
+
+            form {
+                width: 200px;
+                margin: 0 auto;
+            }
+
+            .button{
+                font-family: Helvetica, sans-serif;
+                font-size: 1.3em;
+                color: white;
+
+                border: none 0;
+                border-radius: 5px;
+                width: 200px; 
+                height: 90px;
+                padding: 30px 20px;
+                cursor: pointer;
+                
+                text-align: center;
+
+            }
+
+            #addEntryBtn {
+                background-color: #4B59AE;
+                display: block;
+                margin: 0 auto;
+            }
+
+            #addEntryBtn:hover {
+                background-color: #293374;
+            }
+
+            #viewJournalsBtn {
+                background-color: #698F43;
+            }
+
+            #viewJournalsBtn:hover {
+                background-color: #3f5a25;
+            }
+
+            #trackerBtn {
+                background-color: #B56C8E;
+            }
+
+            #trackerBtn:hover {
+                background-color: #743a55;
+            }
+
+            #goalsBtn {
+                background-color: #44746F;
+            }
+
+            #goalsBtn:hover {
+                background-color: #254744;
+            }
+
+            #dashbardBtn {
+                background-color:#DBA842;
+            }
+
+            #dashbardBtn:hover {
+                background-color:#9c7527;
+            }
+
+            .button:hover{
+                    background-color: rgb(52, 27, 58);
+
+            }
+        </style>
+    </head>
+
     <body>
-        <h1 style="text-align: center ">Main Menu</h1>
-    
+        <div id="container">
+            <h1 id="title">Main Menu</h1>
+        
 
-        <button   class="button" onclick = "location.href = '/public/Journal/addentry.html';">Add an Entry</button>
-        
-        <br>
-        <br>
-    <form  action="/viewjournals" method="post" >
-        <!-- <input type="HIDDEN" id="userID" name="userID" value="1234"> -->
-        
-        <button style="text-align: center " class="button"> View Journals</button>
-       </form>
-           
+            <button class="button" id="addEntryBtn" onclick = "location.href = '/public/Journal/addentry.html';">Add an Entry</button>
+
+
             <br>
             <br>
-        <form action="/tracker" method="post">
-            <button class="button">Go to Tracker</button>
-           </form>
 
-         
-           <br>
-           <br>
-        <form  action="/DailyGoals" method="post">
-            <button class="button">Create Goals</button>
-        </form>
+            <form  action="/viewjournals" method="post" >
+                <button class="button" id="viewJournalsBtn"> View Journals</button>
+            </form>
+            
+            <br>
+            <br>
 
-        <br >
-        <br>
-        <form  action="/Dashboard" method="post">
-            <button class="button">Dashboard</button>
-        </form>
+            <form action="/tracker" method="post">
+                <button class="button" id="trackerBtn">Go to Tracker</button>
+            </form>
 
+            <br>
+            <br>
+
+            <form  action="/DailyGoals" method="post">
+                <button class="button" id="goalsBtn">Create Goals</button>
+            </form>
+
+            <br>
+            <br>
+
+            <form  action="/Dashboard" method="post">
+                <button class="button" id="dashbardBtn">Dashboard</button>
+            </form>
+        </div>
     </body>
 </html>
