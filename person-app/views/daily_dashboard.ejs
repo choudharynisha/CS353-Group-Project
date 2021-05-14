@@ -23,17 +23,17 @@
         <button onclick = "window.history.back();">Back</button>
         <button onclick = "window.open('/', '_self');">Main Menu</button><br /><br />
         
-        <h1 >  Dailies </h1>
-        <br /><br />
-        <div id = "container" style = "width: 1200px; height: 600px;"></div>
+        <h1 style="text-align: center;">  Dailies </h1>
+        <br >
+        <div id = "container" style = "width: 1200px; height: 600px; margin-right: auto; margin-left: auto;"></div>
         <br /><br />
       
 
         <br>
         <br>
+        <h1 style="text-align: center;">  Goals  </h1>
 
-
-        <div style="margin-right: auto; margin-left: auto; text-align: center;">
+        <div style="width: 900px; height: 600px; margin-right: auto; margin-left: auto;">
             <div class ="goalLists" id="dailygoals" style = " width: 300px; height: 400px; background-color: aliceblue; overflow:auto; ">
               <br>
               <h3 style="text-align: center;">Daily Goals</h3>
@@ -47,31 +47,32 @@
             </div>
 
             <div class ="goalLists" id="weeklygoals" style = " width: 300px; height: 400px; background-color: aliceblue; overflow:auto;">
-             <br>
-             <h3 style="text-align: center;">Weekly Goals</h3>
+                <br>
+                <h3 style="text-align: center;">Weekly Goals</h3>
       
-            <ul style="color: black; text-align: center;"> 
+                <ul style="color: black; text-align: center;"> 
                 <% for( let i =0; i< test[1].length; i++){%> 
                     <%if( test[1][i].type === 'weekly'){ %>
                     <p><%= test[1][i].description %></p> <%} }%>
         
-             </ul>
-        </div>
+                </ul>
+            </div>
        
         
-        <div class ="goalLists" id="monthlygoals" style = " width: 300px; height: 400px; background-color: aliceblue; overflow:auto;">
-            <br>
-            <h3 style="text-align: center;">Monthly Goals</h3>
+            <div class ="goalLists" id="monthlygoals" style = " width: 300px; height: 400px; background-color: aliceblue; overflow:auto;">
+                 <br>
+                <h3 style="text-align: center;">Monthly Goals</h3>
       
-            <ul style="color: black; text-align: center;"> 
+                <ul style="color: black; text-align: center;"> 
                 <% for( let i =0; i< test[1].length; i++){%> 
                     <%if( test[1][i].type === 'monthly'){ %>
                     <p><%= test[1][i].description %></p> <%  } }%>
         
-             </ul>
-        </div>
+                </ul>
+            </div>
 
-    </div>
+        </div>
+        
         <br>
         <br>
         <br >
