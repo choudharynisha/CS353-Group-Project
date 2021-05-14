@@ -9,6 +9,14 @@
             body{
                 background-color: cornflowerblue;
             }
+            .goalLists{
+                float: left; 
+                outline: black;
+                outline-style: solid;
+                text-align: center;
+                margin-right: auto; 
+                margin-left: auto;
+            }
         </style>
     </head>
     <body>
@@ -17,14 +25,14 @@
         
         <h1 >  Dailies </h1>
         <br /><br />
-        <div id = "container" style = "width: 500px; height: 400px;"></div>
+        <div id = "container" style = "width: 700px; height: 400px;"></div>
         <br /><br />
       
 
         <br>
         <br>
 
-        <div id="dailygoals" style = " width: 500px; height: 400px; background-color: aliceblue; ">
+        <div class ="goalLists" id="dailygoals" style = " width: 300px; height: 400px; background-color: aliceblue; ">
             <br>
             <h3 style="text-align: center;">Daily Goals</h3>
       
@@ -36,7 +44,7 @@
              </ul>
         </div>
 
-        <div id="weeklygoals" style = " width: 500px; height: 400px; background-color: aliceblue; ">
+        <div class ="goalLists" id="weeklygoals" style = " width: 300px; height: 400px; background-color: aliceblue; ">
             <br>
             <h3 style="text-align: center;">Weekly Goals</h3>
       
@@ -49,7 +57,7 @@
         </div>
        
         
-        <div id="monthlygoals" style = " width: 500px; height: 400px; background-color: aliceblue; ">
+        <div class ="goalLists" id="monthlygoals" style = " width: 300px; height: 400px; background-color: aliceblue; ">
             <br>
             <h3 style="text-align: center;">Monthly Goals</h3>
       
@@ -61,7 +69,10 @@
              </ul>
         </div>
 
-
+        <br>
+        <br>
+        <br >
+        
         <% let today = new Date(); 
         let start = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); 
         let lookingAt = [new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) , new Date(Date.now() - 6 * 24 * 60 * 60 * 1000), new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), new Date(Date.now() - 4 * 24 * 60 * 60 * 1000), new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)]; 
@@ -76,7 +87,7 @@
                 if( start < test[0][i][0] )
                {
                   
-                   let ob =[ test[0][i][0], test[0][i][1]    ,  test[0][i][2] ,  test[0][i][3], test[0][i][4]  , test[0][i][5], "*" ]; 
+                   let ob =[ test[0][i][0].toLocaleDateString(), test[0][i][1] ,  test[0][i][2] ,  test[0][i][3], test[0][i][4]  , test[0][i][5], "*" ]; 
                  data.push(ob);   %>
                  <p> <%= %> </p>
                  <%}
@@ -99,37 +110,31 @@
              let temptracker = data.split('*'); 
 
 
-             //.log(temptracker);
+             console.log(temptracker);
 
 
             var start = "<%= start %>"   ;
             
-            //console.log(start);
+            
 
             var tracker =[]; 
             
-            for (var i = 0 ; i < temptracker.length; i += 6)
+            for (var i = 0 ; i < temptracker.length; i++)
             {
                 //tracker[i].replaceAll(" ", ""); 
+                console.log(temptracker[i]);
+                if(i != 0)
+                {
+                    temptracker[i]= temptracker[i].substring( 1, temptracker[i].length); 
+                }
                 var tempdata =temptracker[i].split(',');
                 let tem =[];
-                if( tempdata[0] === "")
-                {
-                    //console.log(tempdata);
-
-                    for(let i =1; i < tempdata.length; i++)
-                    {
-                        tem.push(tempdata[i]); 
-                    }
-                    tracker.push(tem);
-                }
-                else
-                {
-               
+                
+                
                  tracker.push(tempdata);
-                }
+                
             }
-             // console.log(tracker);
+             console.log(tracker);
 
             
          anychart.onDocumentReady(function () {
@@ -182,30 +187,56 @@
 
 
                 }
-                console.log(stress);
+
+                //console.log(stress);
 
                 let tempE=[]
                 for(let i = 0; i < energy.length; i++)
                 {
                             tempE.push({ x: dates[i], y: energy[i]});
                 }
-                console.log(tempE);
+                //console.log(tempE);
                       
                 var energyline = chart.line(tempE);
 
 
 
-                      let tempM=[]
-                    for(let i = 0; i < motivation.length; i++)
-                    {
-                            tempM.push({ x: dates[i], y: motivation[i]});
-                    }
-                    console.log(tempM);
-                      var energyline = chart.line(tempM);
+                let tempM=[]
+                for(let i = 0; i < motivation.length; i++)
+                {
+                     tempM.push({ x: dates[i], y: motivation[i]});
+                }
+                //console.log(tempM);
+                var motivationline = chart.line(tempM);
 
+                    
+                let tempS=[]
+                for(let i = 0; i < stress.length; i++)
+                {
+                    tempS.push({ x: dates[i], y: stress[i]});
+                }
+                // console.log( "tempS" +tempS);
+                var stressline = chart.line(tempS);
 
                 
+                let tempD=[]
+                for(let i = 0; i < depression.length; i++)
+                {
+                    tempD.push({ x: dates[i], y: depression[i]});
+                }
                 
+                var depline = chart.line(tempD);
+
+
+                let tempA=[]
+                for(let i = 0; i < anxiety.length; i++)
+                {
+                    tempA.push({ x: dates[i], y: anxiety[i]});
+                }
+                
+                var depline = chart.line(tempA);
+
+
                 chart.title('Tracker data ');
                 
                 chart.container('container');
