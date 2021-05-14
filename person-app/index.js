@@ -44,8 +44,7 @@ app.post('/Dashboard', (req, res) => {
 
     let data = [null,null];
    
-    if(req.query.userID && req.query.date) 
-    {
+    if(req.query.userID && req.query.date) {
         queryObj = 
         { 
                 "userID" : req.query.userID,
@@ -54,18 +53,13 @@ app.post('/Dashboard', (req, res) => {
     }
 
     Daily.find(queryObj, (err, dailies) => {
-        if(err) 
-        {
+        if(err) {
             console.log('Failure to retrieve the Daily/ies from the database: ' + err);
             res.json([{"error" : "FailureToReturnDailies"}]);
-        } 
-        else if(dailies.length == 0) 
-        {
+        } else if(dailies.length == 0) {
             console.log('No match found in Dailies');
             res.json([{"error" : "DailiesNotFound"}]);
-        } 
-        else 
-        {
+        } else {
             // construct an array out of the result
             let returnArray = [];
             dailies.forEach( (daily) => {
@@ -78,70 +72,53 @@ app.post('/Dashboard', (req, res) => {
             let values = []; 
             
 
-            for(let i =0; i < returnArray.length; i++)
-            {
+            for(let i =0; i < returnArray.length; i++) {
                 let tempvalues =[]; 
                 let  tem = returnArray[i].trackers; 
                 
                 // if( returnArray[i].hasOwnProperty(returnArray[i].trackers) )
                 //  {
-                    if( i === 0)
-                    {
+                    if( i === 0) {
                         tempvalues.push(" ") ;
                     }
                   
                     // console.log(returnArray[i].date.toLocaleDateString()); 
                     tempvalues.push(returnArray[i].date) ;
-                    for(item in returnArray[i].trackers)
-                    {
+                    for(item in returnArray[i].trackers) {
                         var fillin =0; 
-                        if(item === 'energy')
-                        {
+                        if(item === 'energy') {
                             tempvalues.push(  returnArray[i].trackers.energy); 
                             fillin = fillin +1; 
-                        }
-                        else if(item === 'depression')
-                        {
+                        } else if(item === 'depression') {
                             tempvalues.push( returnArray[i].trackers.depression);
                             fillin = fillin +1; 
-                        }
-                        else if(item === 'anxiety')
-                        {
+                        } else if(item === 'anxiety') {
                             tempvalues.push( returnArray[i].trackers.anxiety);
                             fillin = fillin +1; 
-                        }
-                        else if(item === 'stress')
-                        {
+                        } else if(item === 'stress') {
                             tempvalues.push( returnArray[i].trackers.stress);
                             fillin = fillin +1; 
-                        }
-                        else if(item === 'motivation')
-                        {
+                        } else if(item === 'motivation') {
                             tempvalues.push(  returnArray[i].trackers.motivation);
                             fillin = fillin +1; 
-                        }
-                        else
-                        {
+                        } else {
                             tempvalues.push(item); 
                             fillin = fillin +1; 
                         }
-                        if(fillin === 0)
-                        {
+
+                        if(fillin === 0) {
                             tempvalues.push(item)
                         }
-
-                         
-                       
-                        
                     }
-                   
+                    
                     //console.log(tempvalues); 
-                   values.push(tempvalues); 
-
-                for(let i = 0; i < returnArray.length; i++)  {
-               
+                    values.push(tempvalues); 
+                // }
+                
+                for(let i = 0; i < returnArray.length; i++) {
                     let tempvalues =[]; 
                     let tem = returnArray[i].trackers;
+
                     for(item in returnArray[i].trackers) {
                         if(item === 'energy') {
                             tempvalues.push(returnArray[i].trackers.energy)
@@ -151,12 +128,9 @@ app.post('/Dashboard', (req, res) => {
                     }
                     //console.log(tempvalues); 
                 }
-               
             }
-           
-
             
-            data[0]= values;    
+            data[0] = values;    
         }
     }) 
    
@@ -257,15 +231,45 @@ app.post('/createGoalWeb', (req, res) => {
     })
 })
 
+// endpoint for creating a new User in the web app
+app.post('/createUserWeb', (req, res) => {
+    // construct the User from the form data which is in the request body
+    var newUser = new User ({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+    });
+    
+    // save the User to the database 
+    newUser.save( (err, user) => { 
+        if(err) {
+            if(err.code === 11000){
+                res.send({"error" : "emailAlreadyExists"});
+            } else {
+                console.log(err.code);
+                console.log(err);
+                res.send(error.code, error);
+            }
+            
+            console.log(err);
+        } else {
+            // https://stackoverflow.com/questions/6854431/how-do-i-get-the-objectid-after-i-save-an-object-in-mongoose/47002504
+            console.log("path.__dirname = " + path.__dirname);
+            res.sendFile('localhost:3000/public/index.html');
+            console.log(user._id);
+        }
+    } );
+});
+
 //*******
 app.post('/viewjournals', (req, res) => {
     let queryObj = {};
     
     if(req.query.userID && req.query.date) {
         queryObj = { 
-                    "userID" : req.query.userID,
-                    "date" : {$gte : req.query.date}
-                   };
+            "userID": req.query.userID,
+            "date": {$gte : req.query.date}
+        };
     }
     
     Journal.find(queryObj, (err, journals) => {
