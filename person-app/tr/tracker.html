@@ -6,19 +6,16 @@
         <style>
             
             
-            .button{
-                border: 2px solid #4CAF50;
-            }
+          
 
             .first-group .button {
             
-            background-color: #4CAF50; /* Green */
-            border: none;
+            
+            border: none; 
             color: white;
             padding: 10px 20px;
-             margin-right: auto; 
-             margin-left: auto; 
-             text-align: center;
+            float: left;
+            text-align: center;
             display:inline; 
             
             cursor: pointer;
@@ -26,21 +23,16 @@
             
             }
 
-            .first-group .button:hover {
-            background-color: #3e8e41;
-            }
+          
 
             
 
             .De-group .button {
-            background-color: #4CAF50; /* Green */
-           
-            border: none;
+                border: none; 
             color: white;
             padding: 10px 20px;
-             margin-right: auto; 
-             margin-left: auto; 
-             text-align: center;
+            float: left;
+            text-align: center;
             display:inline; 
             
             cursor: pointer;
@@ -51,13 +43,11 @@
             background-color: #3e8e41;
             }
             .A-group  .button {
-            background-color: #4CAF50; /* Green */
-            border: none;
+                border: none; 
             color: white;
             padding: 10px 20px;
-             margin-right: auto; 
-             margin-left: auto; 
-             text-align: center;
+            float: left;
+            text-align: center;
             display:inline; 
             
             cursor: pointer;
@@ -70,13 +60,11 @@
             }
 
             .S-group .button {
-            background-color: #4CAF50; /* Green */
-            border: none;
+                border: none; 
             color: white;
             padding: 10px 20px;
-             margin-right: auto; 
-             margin-left: auto; 
-             text-align: center;
+            float: left;
+            text-align: center;
             display:inline; 
             
             cursor: pointer;
@@ -88,13 +76,11 @@
             }
 
             .M-group .button {
-            background-color: #4CAF50; /* Green */
-            border: none;
+                border: none; 
             color: white;
             padding: 10px 20px;
-             margin-right: auto; 
-             margin-left: auto; 
-             text-align: center;
+            float: left;
+            text-align: center;
             display:inline; 
             
             cursor: pointer;
@@ -125,9 +111,9 @@
         <h1 style="text-align: center;">Mental Health Tracker</h1>
           
             
-                <h3 style="text-align: center;">Energy</h3>
-                
-                <div class="first-group"  style=" margin-right: auto; margin-left: auto; text-align: center; ">
+        <div style=" margin-right: auto; margin-left: auto; text-align: center; "><h3 style="text-align: center; display: inline;">Energy</h3> <p id="engeryRes" style="text-align: center; display: inline;"></p></div>
+              <br>  
+                <div class="first-group"  style="width: 485px; height: 60px; margin-right: auto; margin-left: auto; margin-left:auto;">
                 <button id="oneE"class="button" style="background-color: rgb(4, 0, 255);">1</button>
                 <button id="twoE"class="button" style="background-color: rgb(7, 4, 185);">2</button>
                 <button id="threeE"class="button" style="background-color: rgb(79, 5, 114);">3</button>
@@ -140,13 +126,13 @@
                 <button id="tenE"class="button" style="background-color: rgb(250, 92, 184);">10</button>
                 </div>
                
-   
-                <p id="engeryRes" style="text-align: center;"><br></p>
+   <br>
+               
 
 
-                <h3 style="clear:both; text-align: center;"><br>Depression</h3>
-
-                <div class="De-group" style=" margin-right: auto; margin-left: auto; text-align: center; ">
+                <div style=" margin-right: auto; margin-left: auto; text-align: center; "><h3 style="clear:both; text-align: center;display: inline;"> Depression </h3><p id="DepRes" style="text-align: center;display: inline;"></p></div>
+                <br>
+                <div class="De-group" style="width: 485px; height: 60px; margin-right: auto; margin-left: auto; margin-left:auto;">
                     <button id="oneD" class="button" style="background-color: rgb(255, 217, 0); ">1</button>
                     <button id="twoD" class="button" style="background-color:rgb(228, 194, 2);">2</button>
                     <button id="threeD" class="button" style="background-color: rgb(200, 179, 9);">3</button>
@@ -158,13 +144,13 @@
                     <button id="ninD" class="button" style="background-color: rgb(34, 108, 138);">9</button>
                     <button id="tenD"class="button" style="background-color: rgb(29, 91, 117);">10</button>
                 </div>
-                
-                    <p id="DepRes" style="text-align: center;"><br></p>
+        
+                    
         
                 
-                <h3 style="clear:both; text-align: center;"><br>Anxiety</h3>
-
-                <div class="A-group" style=" margin-right: auto; margin-left: auto; text-align: center; ">
+                    <div style=" margin-right: auto; margin-left: auto; text-align: center; "><h3 style="clear:both ; text-align: center; display: inline;"><br>Anxiety </h3><p id="AnRes" style="text-align: center; display: inline;"></p></div>
+                    <br>
+                <div class="A-group" style="width: 485px; height: 60px; margin-right: auto; margin-left: auto; margin-left:auto;">
                     <button id="oneA"   class="button" style="background-color: rgb(28, 185, 212);">1</button>
                     <button id="twoA"   class="button" style="background-color: rgb(11, 224, 178);">2</button>
                     <button id="threeA" class="button" style="background-color:rgb(11, 148, 118);">3</button>
@@ -177,11 +163,12 @@
                     <button id="tenA"   class="button" style="background-color: rgb(240, 101, 8);">10</button>
                 </div>
                
-                    <p id="AnRes" style="text-align: center;"><br></p>
+                    
            
-                <h3 style="clear:both ; text-align: center;"><br>Stress</h3>
+                    <div style=" margin-right: auto; margin-left: auto; text-align: center; "><h3 style="clear:both ; text-align: center; display: inline;"><br>Stress</h3> <p id="StressRes" style="text-align: center; display: inline;"></p></div>
+                <br>
 
-                <div class="S-group" style=" margin-right: auto; margin-left: auto; text-align: center; ">
+                <div class="S-group" style="width: 485px; height: 60px; margin-right: auto; margin-left: auto; margin-left:auto;">
                     <button id="oneS" class="button" style="background-color: rgb(11, 224, 178);">1</button>
                     <button id="twoS" class="button" style="background-color: rgb(12, 158, 126);">2</button>
                     <button id="threeS" class="button" style="background-color: rgb(131, 158, 12);">3</button>
@@ -194,11 +181,11 @@
                     <button id="tenS" class="button" style="background-color: rgb(228, 19, 64);">10</button>
                 </div>
                
-                    <p id="StressRes" style="text-align: center;"><br></p>
+                    
                 
-                <h3 style="clear:both; text-align: center;"><br>Motivation</h3>
-
-                <div class="M-group" style=" margin-right: auto; margin-left: auto; text-align: center; ">
+               <div style=" margin-right: auto; margin-left: auto; text-align: center; "> <h3 style="clear:both; text-align: center; display: inline;"><br>Motivation</h3>  <p id="MotRes" style="text-align: center; display: inline;"></p></div>
+                <br>
+                <div class="M-group" style="width: 485px; height: 60px; margin-right: auto; margin-left: auto; margin-left:auto;">
                     <button id="oneM"   class="button" style="background-color: rgb(11, 224, 178);">1</button>
                     <button id="twoM"   class="button" style="background-color: rgb(12, 158, 126);">2</button>
                     <button id="threeM" class="button" style="background-color: rgb(131, 158, 12);">3</button>
@@ -214,13 +201,12 @@
               
  
         
-                   <p id="MotRes" style="text-align: center;"><br></p>
                    
                 <p style="clear:both"><br></p> 
 
 
                 <div  class="navigation" style=" margin-right: auto; margin-left: auto; text-align: center;">
-                <button id="backb" class="submit" style=" display: inline; " >Back</button>
+                <button id="backb" class="submit" style=" display: inline; " >Home </button>
                 <button id="submitB" class="submit" style=" display: inline; ">submit</button>
                 <button id="clearB" class="submit" style=" display: inline; " >clear</button>
                 <br>
