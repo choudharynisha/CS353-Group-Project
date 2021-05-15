@@ -108,18 +108,27 @@
               
                 let temp = []; 
                 temp = test[0][i];
-                
-                if( start < test[0][i][0] )
-               {
-                  
-                   let ob =[ test[0][i][0].toLocaleDateString(), test[0][i][1] ,  test[0][i][2] ,  test[0][i][3], test[0][i][4]  , test[0][i][5], "*" ]; 
-                 data.push(ob);
-                    
-               }
-            }    
         %>
-      
-        <%  
+             
+            <%
+
+                if( start < temp[0] )
+               {
+                  // .toLocaleDateString()
+                   let ob =[ temp[0].toLocaleDateString(), temp[1] ,  temp[2] ,  temp[3], temp[4]  , temp [5], "*" ]; 
+                   
+                 data.push(ob);
+            %>
+                 <!-- <%=temp[0]%>
+                 <p><%= ob[0] %></p> -->
+        <% 
+               }
+           
+        
+            }    
+        
+   
+    
                
             let newlist = []; 
             data.reverse();
@@ -127,14 +136,21 @@
             while(newlist.length != len)
             {
                 let temitem =0; 
-                for(let i =1; i < data.length -1; i++)
+                for(let i =1; i < data.length ; i++)
                 {
                         temitem= data[i-1]; 
                        
-                        if(data[i][0] < temitem[0])
+                        if(data[i][0] < temitem[0] || data[i][0]  === temitem[0] )
                         {
-                                temitem = data[i]; 
+                            if(data[i][0]  === temitem[0])
+                            {
+                               continue;
                                 
+                            }
+                            else
+                            {
+                                temitem = data[i]; 
+                            }
                         }
                         
                 }
@@ -152,7 +168,7 @@
         %>
 
         
-        
+        <p><%= data %></p>
        
 
 

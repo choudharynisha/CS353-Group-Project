@@ -44,13 +44,14 @@ app.post('/Dashboard', (req, res) => {
 
     let data = [null,null];
    
-    if(req.query.userID && req.query.date) {
+    if(req.query.userID /*&& req.query.date*/) {
         queryObj = 
         { 
                 "userID" : req.query.userID,
-                "date" : {$gte : req.query.date}
+                //"date" : {$gte : req.query.date}
         };
     }
+    
 
     Daily.find(queryObj, (err, dailies) => {
         if(err) {
