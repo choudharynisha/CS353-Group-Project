@@ -255,11 +255,40 @@ app.post('/createUserWeb', (req, res) => {
         } else {
             // https://stackoverflow.com/questions/6854431/how-do-i-get-the-objectid-after-i-save-an-object-in-mongoose/47002504
             console.log("path.__dirname = " + path.__dirname);
-            res.sendFile('localhost:3000/public/index.html');
+            res.sendFile('localhost:3000/public/index.html?userid=' + user._id);
             console.log(user._id);
         }
     } );
 });
+
+app.post('/weblogin', (req, res) => {
+    let queryUser = {};
+    
+    if(req.body.email && req.body.password) {
+        queryUser = {
+            "email": req.body.email,
+            "password": req.body.password
+        };
+    }
+    
+    console.log(queryUser.email);
+    console.log(queryUser.password);
+    
+    User.findOne(queryUser, (error, user) => {
+        if(error) {
+            console.log('The email and/or password provided as credentials are invalid – ' + error);
+            res.json({});
+        } else if(user.length == 0) {
+            console.log('The email and/or password entered as credentials are invalid.');
+            res.json({});
+        } else {
+            // the login is successful
+            console.log("successful login");
+            res.cookie = ('user', user._id);
+            res.sendFile('/public/index.html');
+        }
+    })
+})
 
 //*******
 app.post('/viewjournals', (req, res) => {

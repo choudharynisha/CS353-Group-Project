@@ -6,7 +6,7 @@
             body{
                 background-color: rgb(113, 149, 160);
             }
-
+            
             #container {
                 width: 600px;
                 margin: 20px auto;
@@ -14,7 +14,7 @@
                 background-color: rgba(255, 255, 255, 0.8);
                 border-radius: 5px;
             }
-
+            
             #title {
                 text-align: center;
                 font-family: Arial, Helvetica, sans-serif;
@@ -24,12 +24,12 @@
                 line-height: 1.8em;
                 border-radius: 5px 5px 0 0;
             }
-
+            
             form {
                 width: 200px;
                 margin: 0 auto;
             }
-
+            
             .button{
                 font-family: Helvetica, sans-serif;
                 font-size: 1.3em;
@@ -45,17 +45,17 @@
                 text-align: center;
 
             }
-
+            
             #addEntryBtn {
                 background-color: #4B59AE;
                 display: block;
                 margin: 0 auto;
             }
-
+            
             #addEntryBtn:hover {
                 background-color: #293374;
             }
-
+            
             #viewJournalsBtn {
                 background-color: #698F43;
             }
@@ -93,8 +93,8 @@
 
             }
         </style>
+        <script src = "home.js" type = "text/javascript"></script>
     </head>
-
     <body>
         <div id="container">
             <h1 id="title">Main Menu</h1>
@@ -132,5 +132,9 @@
                 <button class="button" id="dashbardBtn">Dashboard</button>
             </form>
         </div>
+        
+        <script>
+            console.log("userID = " + window.localStorage.getItem("userID"));
+        </script>
     </body>
 </html>

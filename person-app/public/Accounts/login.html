@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang = "en-US" dir = "ltr">
+    <head>
+        <meta charset = "UTF-8" />
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
+        
+        <script src = "login.js" type = "text/javascript" ></script>
+        
+        <title>Log In</title>
+    </head>
+    <body>
+        <h1>Log In</h1>
+        
+        <button class = "button" onclick = "location.href = '/';">Home</button><br /><br />
+        
+        <div id = "login-error-message-box" style = "background-color: #F08080; border-style: solid; visibility: hidden;">
+            <p id = "login-error-message" style = "padding-left: 5px;"></p>
+        </div>
+        
+        <form id = "login">
+            <label>Email</label><br />
+            <input id = "email" placeholder = "email@example.com" type = "email" required /><br /><br />
+            
+            <label>Password</label><br />
+            <input id = "password" placeholder = "placeholder" type = "password" required /><br /><br />
+        </form>
+        
+        <button id = "submit" type = "submit">Submit</button>
+    </body>
+</html>

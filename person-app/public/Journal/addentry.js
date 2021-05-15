@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // get ready to get the entry and add it to the database
     submitting = document.querySelector('#submit');
     clearing = document.querySelector('#clear');
+    console.log(window.localStorage.getItem("userID"));
     
     submitting.addEventListener('click', () => {
         console.log("Add an entry");
