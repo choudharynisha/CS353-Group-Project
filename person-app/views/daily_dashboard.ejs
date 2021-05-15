@@ -135,16 +135,19 @@
             let len = data.length-1; 
             while(newlist.length != len)
             {
-                let temitem =0; 
+                let temitem =data[0]; 
+
                 for(let i =1; i < data.length ; i++)
                 {
-                        temitem= data[i-1]; 
+                   
                        
-                        if(data[i][0] < temitem[0] || data[i][0]  === temitem[0] )
+                        if(data[i][0] < data[i-1][0] || data[i][0]  === data[i-1][0])
                         {
-                            if(data[i][0]  === temitem[0])
+
+                            if(data[i-1]  ===  temitem[0] )
                             {
-                               continue;
+                                
+                                continue;
                                 
                             }
                             else
@@ -168,7 +171,7 @@
         %>
 
         
-        <p><%= data %></p>
+        
        
 
 
