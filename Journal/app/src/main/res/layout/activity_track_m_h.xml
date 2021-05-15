@@ -760,7 +760,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_weight="1"
                 android:onClick="onclickReturnMain"
-                android:text="Back to Main"
+                android:text="Back"
                 android:textColor="#fff"
                 app:backgroundTint="#558580"
                 tools:ignore="ButtonStyle,HardcodedText" />

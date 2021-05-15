@@ -85,7 +85,7 @@
         android:layout_marginBottom="8dp"
         android:backgroundTint="#44746F"
         android:onClick="onClickReturnToMain"
-        android:text="Back To Main"
+        android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="8dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
