@@ -46,7 +46,7 @@ function login() {
     email.value = loginAttempt.email;
     
     password.type = "HIDDEN";
-    password.name = "passsword";
+    password.name = "password";
     password.id = "password";
     password.value = loginAttempt.password;
     
